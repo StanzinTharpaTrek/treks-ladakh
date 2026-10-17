@@ -1,6 +1,7 @@
 {
   "name": "blog-treks",
   "private": true,
+  "homepage": "https://stanzintharpatrek.github.io/treks-ladakh/",
   "scripts": {
     "build": "node outils/construire.js",
     "apercu": "node outils/construire.js --alleger --verifier"

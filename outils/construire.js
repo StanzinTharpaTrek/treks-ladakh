@@ -23,6 +23,10 @@ const SORTIE = path.join(RACINE, "site");
 const ORIGINAUX = path.join(RACINE, "originaux");
 const CACHE = path.join(RACINE, ".cache-photos");
 const PHOTOS_CMS = path.join(CONTENU, "photos");   // photos envoyées avec Pages CMS
+const RACINE_PUBLIQUE = path.join(CONTENU, "racine"); // fichiers copiés tels quels (ex. vérification Google)
+// Adresse publique du site (champ « homepage » de package.json), pour les liens complets.
+const ADRESSE_SITE = require("../package.json").homepage.replace(/\/?$/, "/");
+const pagesDuSite = [];
 
 const IMAGES = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".avif", ".tif", ".tiff"];
 const LARGEUR_SITE = 1600;      // largeur maximale des photos sur le site
@@ -255,12 +259,39 @@ function dateLisible(d) {
 }
 
 // racine : chemin relatif vers la racine du site ("", "../", "../../").
-function page({ titre, blog, racine, corps }) {
+// chemin : adresse de la page relative au site (« », « contact/ », « histoires/x/ »).
+// partage : image d'aperçu (relative au site), utilisée par Google, WhatsApp, Facebook...
+function page({ titre, blog, racine, corps, chemin, description, partage, type = "website" }) {
+  const url = ADRESSE_SITE + chemin;
+  pagesDuSite.push(url);
   return fs.readFileSync(path.join(MODELE, "page.html"), "utf8")
-    .replace("{{titre}}", echapper(titre))
-    .replace("{{blog}}", echapper(blog))
+    .replaceAll("{{titre}}", echapper(titre))
+    .replaceAll("{{blog}}", echapper(blog))
+    .replaceAll("{{description}}", echapper(description || ""))
+    .replaceAll("{{url}}", url)
+    .replaceAll("{{image}}", partage ? ADRESSE_SITE + partage : "")
+    .replaceAll("{{type}}", type)
     .replaceAll("{{racine}}", racine)
     .replace("{{corps}}", () => corps);
+}
+
+// Image d'aperçu au format attendu par les réseaux sociaux : JPEG 1200 × 630.
+async function imagePartage(source, cible) {
+  if (!source || !fs.existsSync(source)) return null;
+  fs.mkdirSync(path.dirname(cible), { recursive: true });
+  await sharp(source).rotate().resize(1200, 630, { fit: "cover" }).jpeg({ quality: 80, mozjpeg: true }).toFile(cible);
+  return path.relative(SORTIE, cible).split(path.sep).join("/");
+}
+
+// Plan du site pour les moteurs de recherche.
+function planDuSite() {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${[...pagesDuSite].sort((a, b) => a.length - b.length).map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}
+</urlset>
+`;
+  fs.writeFileSync(path.join(SORTIE, "sitemap.xml"), xml);
+  fs.writeFileSync(path.join(SORTIE, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${ADRESSE_SITE}sitemap.xml\n`);
 }
 
 // Rend cliquables les e-mails, liens web et numéros de téléphone / WhatsApp.
@@ -368,6 +399,7 @@ async function construire() {
   const imageEntete = listerImages(dossierAccueil)[0];
   const enteteHtml = imageEntete && "entete" + path.extname(nomPublie(imageEntete));
   if (imageEntete) await publierPhoto(path.join(dossierAccueil, imageEntete), path.join(SORTIE, enteteHtml), LARGEUR_ENTETE);
+  const partageAccueil = imageEntete ? await imagePartage(path.join(SORTIE, enteteHtml), path.join(SORTIE, "partage.jpg")) : null;
 
   // Histoires
   const dossierHistoires = path.join(CONTENU, "histoires");
@@ -463,7 +495,7 @@ async function construire() {
       : "";
     const corps = `
 <header class="bandeau bandeau--histoire">
-  ${h.couverture ? `<img class="bandeau__image" src="${encodeURI(h.couverture)}" alt="">` : ""}
+  ${h.couverture ? `<img class="bandeau__image" src="${encodeURI(h.couverture)}" alt="${echapper(h.titre)}">` : ""}
   <div class="bandeau__voile"></div>
   <div class="bandeau__texte">
     <a class="retour" href="../../index.html">← ${echapper(intro.titre)}</a>
@@ -484,15 +516,21 @@ async function construire() {
   ${galerie}
   <p class="fin"><a class="bouton" href="../../index.html">← Toutes les histoires</a></p>
 </main>`;
-    fs.writeFileSync(path.join(SORTIE, "histoires", h.id, "index.html"),
-      page({ titre: `${h.titre} · ${intro.titre}`, blog: intro.titre, racine: "../../", corps }));
+    const dossierHistoire = path.join(SORTIE, "histoires", h.id);
+    const partage = h.couverture
+      ? await imagePartage(path.join(dossierHistoire, h.couverture), path.join(dossierHistoire, "partage.jpg"))
+      : partageAccueil;
+    fs.writeFileSync(path.join(dossierHistoire, "index.html"), page({
+      titre: `${h.titre} · ${intro.titre}`, blog: intro.titre, racine: "../../", corps,
+      chemin: `histoires/${h.id}/`, description: resume(h.resume || h.paragraphes, 160), partage, type: "article",
+    }));
   }
 
   // Page d'accueil
   const cartes = histoires.map((h) => `
     <a class="carte" href="histoires/${h.id}/index.html">
       <div class="carte__image">${h.couverture
-        ? `<img src="histoires/${h.id}/${encodeURI(h.couverture)}" alt="" loading="lazy">` : ""}</div>
+        ? `<img src="histoires/${h.id}/${encodeURI(h.couverture)}" alt="${echapper(h.titre)}" loading="lazy">` : ""}</div>
       <div class="carte__texte">
         <p class="date">${dateLisible(h.date)}</p>
         <h3>${echapper(h.titre)}</h3>
@@ -505,7 +543,7 @@ async function construire() {
 
   const corpsAccueil = `
 <header class="bandeau bandeau--fixe">
-  ${imageEntete ? `<img class="bandeau__image" src="${enteteHtml}" alt="">` : ""}
+  ${imageEntete ? `<img class="bandeau__image" src="${enteteHtml}" alt="${echapper(intro.titre)}">` : ""}
   <div class="bandeau__voile"></div>
   <div class="bandeau__texte"><h1>${echapper(intro.titre)}</h1></div>
 </header>
@@ -520,7 +558,10 @@ async function construire() {
     </div>
   </section>
 </main>`;
-  fs.writeFileSync(path.join(SORTIE, "index.html"), page({ titre: intro.titre, blog: intro.titre, racine: "", corps: corpsAccueil }));
+  fs.writeFileSync(path.join(SORTIE, "index.html"), page({
+    titre: intro.titre, blog: intro.titre, racine: "", corps: corpsAccueil,
+    chemin: "", description: resume(intro.paragraphes, 160), partage: partageAccueil,
+  }));
 
   // Page de contact
   const fichierContact = fs.readdirSync(dossierAccueil).find((f) => /^contact.*\.txt$/i.test(f));
@@ -543,7 +584,18 @@ async function construire() {
 </main>`;
   fs.mkdirSync(path.join(SORTIE, "contact"), { recursive: true });
   fs.writeFileSync(path.join(SORTIE, "contact", "index.html"),
-    page({ titre: `${contact.titre} · ${intro.titre}`, blog: intro.titre, racine: "../", corps: corpsContact }));
+    page({
+      titre: `${contact.titre} · ${intro.titre}`, blog: intro.titre, racine: "../", corps: corpsContact,
+      chemin: "contact/", partage: partageAccueil,
+      // Description : le texte libre de la page, sans les lignes « Libellé : valeur ».
+      description: resume(contact.paragraphes.filter((p) => !/^[^:\n]{1,30}?\s*:\s+/m.test(p)), 160),
+    }));
+
+  planDuSite();
+  // Fichiers à placer tels quels à la racine du site (ex. vérification Google Search Console).
+  if (fs.existsSync(RACINE_PUBLIQUE)) {
+    for (const f of fs.readdirSync(RACINE_PUBLIQUE)) fs.copyFileSync(path.join(RACINE_PUBLIQUE, f), path.join(SORTIE, f));
+  }
 
   console.log(`Site généré : ${histoires.length} histoire(s).`);
   for (const a of avertissements) console.log("Attention : " + a);
