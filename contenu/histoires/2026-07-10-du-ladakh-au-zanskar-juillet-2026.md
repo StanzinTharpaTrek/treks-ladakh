@@ -7,6 +7,67 @@ resume: "Le récit complet de notre voyage : Leh, la route du Zanskar, la vallé
   les plus beaux monastères."
 couverture: photos/tso-moriri-16.jpg
 etapes:
+  - chapitre: Les retours de nos trekers
+    titre: Leurs retours
+    texte: >-
+      Nous avons passé 3 semaines au Ladakh en juillet 2026, guidés par Stanzin,
+      magnifique Ladakhi parlant couramment le français.
+
+      Avec son équipe de guides, cuisiniers, muletiers et chauffeurs,  il nous a
+      fait découvrir un  Ladakh et un Zanskar d'une grande authenticité,
+      mélangeant découvertes  en 4x4 et treks de plusieurs jours dans des
+      paysages incroyables, le tout avec grande sympathie, attention et
+      bienveillance.
+
+      Inoubliable!!
+
+      Un immense merci à Stanzin et toute son équipe!!
+
+      Eric
+
+
+      -------
+
+
+      Un voyage enchanté au Ladakh, une expérience inoubliable avec Stanzin et
+      son équipe.
+
+
+      Le Ladakh nous a offert bien plus qu’un voyage : une véritable parenthèse
+      magique, au cœur de paysages grandioses, riche en découvertes, en émotions
+      et en rencontres humaines inoubliables. Un voyage organisé sur mesure avec
+      notre guide Stanzin francophone et anglophone.
+
+
+      Entre les treks avec nuits chez l’habitant ou en autonomie totale avec
+      portage par mules et nuits sous tentes,  les balades en 4×4 à travers des
+      décors à couper le souffle, les visites de monastères authentiques et la
+      découverte de festivals hauts en couleur, chaque journée a été d’une
+      richesse incroyable.
+
+      La beauté sauvage de cette région, la richesse de sa culture et
+      l'authenticité de ses traditions nous ont conquis.
+
+      L’organisation de Stanzin a été absolument parfaite, pensée dans les
+      moindres détails, nous permettant de profiter pleinement de chaque instant
+      en toute sérénité.
+
+
+      Mais ce qui a rendu cette aventure véritablement exceptionnelle, c’est
+      avant tout la grande chaleur humaine, la bienveillance et l’humanité de
+      notre guide et de ses assistants. Toujours attentifs, disponibles,
+      souriants et profondément généreux, ils ont su nous faire découvrir leur
+      pays, leur famille avec passion, tout en nous faisant sentir accueillis
+      comme des amis. Leur présence précieuse, leur gentillesse et leur sens du
+      partage ont donné à ce voyage une dimension profondément humaine.
+
+
+      Un voyage merveilleux, une organisation irréprochable et des rencontres
+      inoubliables.  A tous ceux qui rêvent de découvrir le Ladakh autrement,
+      avec authenticité et confort, émerveillement et humanité, partez avec
+      Stanzin les yeux fermés!
+
+      Erica
   - chapitre: Leh et la route du Zanskar
     titre: Premiers jours à Leh
     altitude: 3 500 m
@@ -384,66 +445,5 @@ etapes:
         legende: La salle de prière
       - image: photos/monasteres-41.jpg
         legende: La statue de Maitreya, le Bouddha du futur
-  - chapitre: Les retours de nos trekers
-    titre: Leurs retours
-    texte: >-
-      Nous avons passé 3 semaines au Ladakh en juillet 2026, guidés par Stanzin,
-      magnifique Ladakhi parlant couramment le français.
-
-      Avec son équipe de guides, cuisiniers, muletiers et chauffeurs,  il nous a
-      fait découvrir un  Ladakh et un Zanskar d'une grande authenticité,
-      mélangeant découvertes  en 4x4 et treks de plusieurs jours dans des
-      paysages incroyables, le tout avec grande sympathie, attention et
-      bienveillance.
-
-      Inoubliable!!
-
-      Un immense merci à Stanzin et toute son équipe!!
-
-      Eric
-
-
-      -------
-
-
-      Un voyage enchanté au Ladakh, une expérience inoubliable avec Stanzin et
-      son équipe.
-
-
-      Le Ladakh nous a offert bien plus qu’un voyage : une véritable parenthèse
-      magique, au cœur de paysages grandioses, riche en découvertes, en émotions
-      et en rencontres humaines inoubliables. Un voyage organisé sur mesure avec
-      notre guide Stanzin francophone et anglophone.
-
-
-      Entre les treks avec nuits chez l’habitant ou en autonomie totale avec
-      portage par mules et nuits sous tentes,  les balades en 4×4 à travers des
-      décors à couper le souffle, les visites de monastères authentiques et la
-      découverte de festivals hauts en couleur, chaque journée a été d’une
-      richesse incroyable.
-
-      La beauté sauvage de cette région, la richesse de sa culture et
-      l'authenticité de ses traditions nous ont conquis.
-
-      L’organisation de Stanzin a été absolument parfaite, pensée dans les
-      moindres détails, nous permettant de profiter pleinement de chaque instant
-      en toute sérénité.
-
-
-      Mais ce qui a rendu cette aventure véritablement exceptionnelle, c’est
-      avant tout la grande chaleur humaine, la bienveillance et l’humanité de
-      notre guide et de ses assistants. Toujours attentifs, disponibles,
-      souriants et profondément généreux, ils ont su nous faire découvrir leur
-      pays, leur famille avec passion, tout en nous faisant sentir accueillis
-      comme des amis. Leur présence précieuse, leur gentillesse et leur sens du
-      partage ont donné à ce voyage une dimension profondément humaine.
-
-
-      Un voyage merveilleux, une organisation irréprochable et des rencontres
-      inoubliables.  A tous ceux qui rêvent de découvrir le Ladakh autrement,
-      avec authenticité et confort, émerveillement et humanité, partez avec
-      Stanzin les yeux fermés!
-
-      Erica
 ---
 Un grand voyage au cœur de l'Himalaya indien : les ruelles de Leh, la route spectaculaire du Zanskar, le baby trek de la vallée de Sham, le lac de Tso Moriri, les treks de Shang La et de Rumbak à Stok, et les plus beaux monastères de la région. Voici notre carnet de route, étape par étape.
