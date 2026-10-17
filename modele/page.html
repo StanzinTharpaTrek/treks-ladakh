@@ -38,9 +38,9 @@
     panneau.addEventListener("click", (e) => { if (e.target.closest("a")) basculer(false); });
   })();
 
-  // Visionneuse : agrandit les photos de la galerie sans quitter la page.
+  // Visionneuse : agrandit les photos (étapes et galerie) sans quitter la page.
   (() => {
-    const liens = [...document.querySelectorAll(".galerie a")];
+    const liens = [...document.querySelectorAll("a.photo")];
     if (!liens.length) return;
 
     const v = document.createElement("dialog");
@@ -48,18 +48,20 @@
     v.innerHTML = `
       <button class="visionneuse__retour" type="button">← Retour</button>
       <span class="visionneuse__compteur"></span>
-      <img class="visionneuse__image" alt="">
+      <figure class="visionneuse__cadre"><img class="visionneuse__image" alt=""><figcaption class="visionneuse__legende"></figcaption></figure>
       <button class="visionneuse__fleche visionneuse__fleche--prec" type="button" aria-label="Photo précédente">‹</button>
       <button class="visionneuse__fleche visionneuse__fleche--suiv" type="button" aria-label="Photo suivante">›</button>`;
     document.body.append(v);
     const image = v.querySelector(".visionneuse__image");
     const compteur = v.querySelector(".visionneuse__compteur");
+    const legende = v.querySelector(".visionneuse__legende");
     let actuelle = 0;
 
     const afficher = (i) => {
       actuelle = (i + liens.length) % liens.length;
       image.src = liens[actuelle].href;
       compteur.textContent = `${actuelle + 1} / ${liens.length}`;
+      legende.textContent = liens[actuelle].dataset.legende || "";
     };
     const ouvrir = (i) => {
       afficher(i);

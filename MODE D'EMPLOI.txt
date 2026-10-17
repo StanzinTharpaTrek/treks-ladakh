@@ -111,10 +111,20 @@ Depuis un téléphone Android ou n'importe quel navigateur (Pages CMS) :
    Ensuite, à chaque histoire :
    1. Ouvrez  app.pagescms.org  puis le projet du blog
    2. Menu « Histoires » > bouton « Add an entry » (ajouter)
-   3. Remplissez le formulaire : titre, date, lieu, récit...
-      Pour les photos, touchez « Photo de couverture » ou « Galerie photos »
-      et choisissez-les dans la galerie du téléphone.
-   4. Touchez « Save » (enregistrer). C'est publié dans 1 à 2 minutes !
+   3. Remplissez le formulaire : titre, date, lieu, photo de couverture,
+      puis une courte « Introduction ».
+   4. Racontez le voyage étape par étape, dans « Étapes du voyage » :
+      touchez le bouton + pour ajouter une étape, puis remplissez :
+        - Titre de l'étape (obligatoire), et si vous le souhaitez :
+          Jour, Temps de marche, Altitude max, Dénivelé + et Dénivelé −
+        - Récit de l'étape
+        - Photos de l'étape : touchez + pour chaque photo, choisissez-la
+          dans la galerie du téléphone et ajoutez une légende si vous voulez.
+          1 photo s'affiche en grand, 2 côte à côte, 3 et plus en mosaïque.
+      Les étapes peuvent être réordonnées. Si chaque étape a un dénivelé,
+      le total du trek est calculé et affiché tout seul.
+      « Autres photos (fin de page) » permet d'ajouter une galerie à la fin.
+   5. Touchez « Save » (enregistrer). C'est publié dans 1 à 2 minutes !
    Astuce : pour des envois plus rapides avec une petite connexion,
    envoyez-vous d'abord les photos par WhatsApp : elles seront allégées.
    Les menus « Accueil (introduction) » et « Page Contact » permettent

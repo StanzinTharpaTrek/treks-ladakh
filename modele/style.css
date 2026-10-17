@@ -149,3 +149,51 @@ h2::after { content: ""; flex: 1; height: 1px; background: var(--bordure); }
 .carte .etiquettes li { font-size: .8rem; padding: .2rem .65rem; background: var(--fond); }
 .coordonnees a.whatsapp { display: inline-block; margin-left: .6rem; padding: .15rem .7rem; border-radius: 999px; background: #1f8f4e; color: #fff; font-size: .85rem; vertical-align: 1px; }
 .coordonnees a.whatsapp:hover { background: #17733e; text-decoration: none; }
+
+/* --- Carnet de route : étapes reliées par un fil, ponctuées de photos --- */
+.carnet { list-style: none; padding: 0; margin: 3rem auto 0; max-width: 880px; }
+.etape { position: relative; margin-left: 18px; padding: 0 0 3.5rem 2.6rem; border-left: 2px solid var(--bordure); }
+.etape:last-child { border-left-color: transparent; padding-bottom: 1rem; }
+.etape__repere { position: absolute; left: -20px; top: -2px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--bordeaux); color: #fff; font: 1.1rem var(--titres); box-shadow: 0 0 0 5px var(--fond); }
+.etape__jour { margin: 0; color: var(--safran); font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; line-height: 38px; }
+.etape__jour + .etape__titre { margin-top: 0; }
+.etape__titre { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--ciel); margin: .25rem 0 .9rem; line-height: 1.2; }
+.etape > p, .etape > h3 { max-width: 680px; }
+.etape > p { font-size: 1.12rem; }
+.etape > h3.sous-titre { font-size: 1.35rem; margin-top: 1.8rem; }
+.etape .etiquettes { margin-bottom: 1.2rem; }
+
+.photos { display: grid; gap: .6rem; margin: 1.6rem 0 0; }
+.photos figure { margin: 0; }
+.photos a.photo { display: block; border-radius: 6px; overflow: hidden; }
+.photos a.photo:focus-visible { outline: 3px solid var(--safran); outline-offset: 3px; }
+.photos img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s, opacity .2s; }
+.photos a.photo:hover img { transform: scale(1.03); }
+.photos figcaption { margin-top: .4rem; color: var(--discret); font-size: .92rem; font-style: italic; line-height: 1.4; }
+/* 1 photo : en grand, sans recadrage (les photos en hauteur restent entières) */
+.photos--1 img { height: auto; max-height: 80vh; object-fit: contain; background: var(--bordure); }
+/* 2 photos : côte à côte */
+.photos--2 { grid-template-columns: 1fr 1fr; }
+.photos--2 img, .photos--4 img { aspect-ratio: 4 / 3; }
+/* 3 photos : une grande, deux petites */
+.photos--3 { grid-template-columns: 1fr 1fr; }
+.photos--3 figure:first-child { grid-column: 1 / -1; }
+.photos--3 figure:first-child img { aspect-ratio: 16 / 9; }
+.photos--3 figure:not(:first-child) img { aspect-ratio: 4 / 3; }
+/* 4 photos : deux par deux ; 5 et plus : mosaïque */
+.photos--4 { grid-template-columns: 1fr 1fr; }
+.photos--5 { grid-template-columns: repeat(3, 1fr); }
+.photos--5 img { aspect-ratio: 1; }
+
+@media (max-width: 600px) {
+  .etape { margin-left: 14px; padding-left: 1.7rem; }
+  .etape__repere { left: -17px; width: 32px; height: 32px; font-size: .95rem; }
+  .etape__jour { line-height: 32px; }
+  .photos--5 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Légende dans la visionneuse */
+.visionneuse__cadre { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; }
+.visionneuse__cadre .visionneuse__image { max-height: calc(100dvh - 150px); }
+.visionneuse__legende { margin-top: .7rem; text-align: center; font-size: .98rem; opacity: .9; }
+.visionneuse__legende:empty { display: none; }

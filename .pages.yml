@@ -65,19 +65,74 @@ content:
         description: "La photo affichée en grand en haut de l'histoire et sur la vignette."
         options:
           media: photos
+      - name: body
+        label: Introduction
+        type: text
+        description: "Le texte d'ouverture, avant les étapes. Laissez une ligne vide entre deux paragraphes. **gras** et *italique* sont possibles."
+      - name: etapes
+        label: Étapes du voyage
+        type: object
+        description: "Le carnet de route : ajoutez une étape avec le bouton +, puis son texte et ses photos. Les étapes peuvent être réordonnées."
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {titre}"
+        fields:
+          - name: titre
+            label: Titre de l'étape
+            type: string
+            required: true
+          - name: jour
+            label: Jour
+            type: string
+            description: "Facultatif. Exemple : Jour 1"
+          - name: temps
+            label: Temps de marche
+            type: string
+            description: "Facultatif. Exemple : 5 h"
+          - name: altitude
+            label: Altitude max
+            type: string
+            description: "Facultatif. Exemple : 3 750 m"
+          - name: denivele_positif
+            label: Dénivelé positif (D+)
+            type: string
+            description: "Facultatif. Exemple : 650 m. Le total du trek est calculé tout seul si chaque étape a un dénivelé."
+          - name: denivele_negatif
+            label: Dénivelé négatif (D−)
+            type: string
+            description: "Facultatif. Exemple : 400 m"
+          - name: texte
+            label: Récit de l'étape
+            type: text
+            description: "Laissez une ligne vide entre deux paragraphes. **gras** et *italique* sont possibles."
+          - name: photos
+            label: Photos de l'étape
+            type: object
+            description: "1 photo s'affiche en grand, 2 côte à côte, 3 et plus en mosaïque."
+            list:
+              collapsible:
+                collapsed: false
+                summary: "Photo {index}"
+            fields:
+              - name: image
+                label: Photo
+                type: image
+                required: true
+                options:
+                  media: photos
+              - name: legende
+                label: Légende
+                type: string
+                description: "Facultatif. Une courte phrase sous la photo."
       - name: galerie
-        label: Galerie photos
+        label: Autres photos (fin de page)
         type: image
-        description: "Les autres photos, affichées en bas de l'histoire."
+        description: "Facultatif. Des photos supplémentaires, affichées en galerie après les étapes."
         options:
           media: photos
           multiple:
             max: 40
-      - name: body
-        label: Récit
-        type: text
-        required: true
-        description: "Laissez une ligne vide entre deux paragraphes. Une ligne qui commence par ## devient un sous-titre (exemple : ## Jour 2 : le col). **gras** et *italique* sont possibles."
 
   - name: introduction
     label: Accueil (introduction)

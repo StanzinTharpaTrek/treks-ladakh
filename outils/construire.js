@@ -50,7 +50,7 @@ const CHAMPS = {
   "TITRE": "titre", "LIEU": "lieu", "RESUME": "resume",
   "DUREE": "duree", "ALTITUDE MAX": "altitude", "ALTITUDE": "altitude", "DIFFICULTE": "difficulte",
 };
-const INFOS_TREK = [["duree", "Durée"], ["altitude", "Altitude max"], ["difficulte", "Difficulté"]];
+const INFOS_TREK = [["duree", "Durée"], ["altitude", "Altitude max"], ["dplus", "D+"], ["dmoins", "D−"], ["difficulte", "Difficulté"]];
 const sansAccents = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
 
 // Lit un fichier d'histoire :
@@ -90,7 +90,24 @@ function lireHistoireCms(fichier) {
   const m = brut.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   const infos = (m && YAML.parse(m[1])) || {};
   const texte = String(m ? m[2] : brut);
-  const enTexte = (v) => (v === undefined || v === null || v === "" ? undefined : String(v).trim());
+  const enTexte = (v) => (v === undefined || v === null || String(v).trim() === "" ? undefined : String(v).trim());
+  const recit = analyserRecit(texte);
+
+  // Étapes du carnet de route : titre, infos facultatives, texte et photos légendées.
+  const etapes = [].concat(infos.etapes || []).filter((e) => e && typeof e === "object").map((e) => ({
+    titre: enTexte(e.titre),
+    jour: enTexte(e.jour),
+    temps: enTexte(e.temps),
+    altitude: enTexte(e.altitude),
+    dplus: enTexte(e.denivele_positif),
+    dmoins: enTexte(e.denivele_negatif),
+    ...analyserRecit(enTexte(e.texte) || ""),
+    photos: [].concat(e.photos || [])
+      .map((p) => (typeof p === "string" ? { image: p } : p || {}))
+      .map((p) => ({ image: enTexte(p.image), legende: enTexte(p.legende) }))
+      .filter((p) => p.image),
+  }));
+
   return {
     titre: enTexte(infos.titre) || path.basename(fichier, ".md"),
     date: enTexte(infos.date),
@@ -101,8 +118,50 @@ function lireHistoireCms(fichier) {
     difficulte: enTexte(infos.difficulte),
     couverture: enTexte(infos.couverture),
     galerie: [].concat(infos.galerie || []).map(enTexte).filter(Boolean),
-    ...analyserRecit(texte),
+    blocs: recit.blocs,
+    etapes,
+    // Pour le résumé automatique : le récit d'introduction, sinon le texte des étapes.
+    paragraphes: [...recit.paragraphes, ...etapes.flatMap((e) => e.paragraphes)],
   };
+}
+
+// Additionne des dénivelés écrits librement (« 650 m », « +650 », « 1 200 »).
+// Renvoie undefined si une étape n'a pas de valeur : un total partiel serait trompeur.
+function totalDenivele(valeurs) {
+  if (!valeurs.length || valeurs.some((v) => !v)) return undefined;
+  const nombres = valeurs.map((v) => parseInt(v.replace(/[^\d]/g, ""), 10));
+  if (nombres.some(isNaN)) return undefined;
+  return nombres.reduce((a, b) => a + b, 0).toLocaleString("fr-FR").replace(/ /g, " ") + " m";
+}
+
+// Une photo cliquable (ouverte dans la visionneuse), avec sa légende éventuelle.
+function figurePhoto(fichier, legende) {
+  return `<figure>
+        <a class="photo" href="${encodeURI(fichier)}"${legende ? ` data-legende="${echapper(legende)}"` : ""}><img src="${encodeURI(fichier)}" alt="${echapper(legende || "")}" loading="lazy"></a>
+        ${legende ? `<figcaption>${echapper(legende)}</figcaption>` : ""}
+      </figure>`;
+}
+
+// Le carnet de route : les étapes reliées par un fil, chacune avec ses photos.
+function carnetDeRoute(etapes) {
+  if (!etapes.length) return "";
+  const infos = (e) => [["Temps de marche", e.temps], ["Altitude max", e.altitude], ["D+", e.dplus], ["D−", e.dmoins]]
+    .filter(([, v]) => v);
+  return `<ol class="carnet">${etapes.map((e, i) => `
+    <li class="etape">
+      <span class="etape__repere" aria-hidden="true">${i + 1}</span>
+      ${e.jour ? `<p class="etape__jour">${echapper(e.jour)}</p>` : ""}
+      ${e.titre ? `<h2 class="etape__titre">${echapper(e.titre)}</h2>` : ""}
+      ${infos(e).length ? `<ul class="etiquettes">${infos(e).map(([l, v]) =>
+        `<li><span>${l}</span> ${echapper(v)}</li>`).join("")}</ul>` : ""}
+      ${e.blocs.map((b) => b.type === "sous-titre"
+        ? `<h3 class="sous-titre">${enHtml(b.texte)}</h3>`
+        : `<p>${enHtml(b.texte)}</p>`).join("\n      ")}
+      ${e.photos.length ? `<div class="photos photos--${Math.min(e.photos.length, 5)}">
+      ${e.photos.map((p) => figurePhoto(p.fichier, p.legende)).join("\n      ")}
+      </div>` : ""}
+    </li>`).join("")}
+  </ol>`;
 }
 
 // Retrouve une photo choisie dans Pages CMS (ex. « photos/col.jpg ») dans contenu/photos.
@@ -310,11 +369,20 @@ async function construire() {
         return nomFinal;
       };
       const couverture = texte.couverture ? await publier(texte.couverture) : null;
+      const dansEtapes = new Set();
+      for (const e of texte.etapes) {
+        for (const p of e.photos) p.fichier = await publier(p.image);
+        e.photos = e.photos.filter((p) => p.fichier);
+        e.photos.forEach((p) => dansEtapes.add(p.fichier));
+      }
       const autres = [];
       for (const p of texte.galerie) {
         const f = await publier(p);
-        if (f && f !== couverture && !autres.includes(f)) autres.push(f);
+        if (f && f !== couverture && !dansEtapes.has(f) && !autres.includes(f)) autres.push(f);
       }
+      // Dénivelés totaux, calculés à partir des étapes.
+      texte.dplus = totalDenivele(texte.etapes.map((e) => e.dplus));
+      texte.dmoins = totalDenivele(texte.etapes.map((e) => e.dmoins));
       fs.mkdirSync(cible, { recursive: true });
       histoires.push({ ...texte, id, date, couverture, autres });
       continue;
@@ -357,7 +425,7 @@ async function construire() {
   for (const h of histoires) {
     const galerie = h.autres.length
       ? `<div class="galerie">${h.autres.map((f) =>
-          `<a href="${encodeURI(f)}"><img src="${encodeURI(f)}" alt="" loading="lazy"></a>`).join("")}</div>`
+          `<a class="photo" href="${encodeURI(f)}"><img src="${encodeURI(f)}" alt="" loading="lazy"></a>`).join("")}</div>`
       : "";
     const corps = `
 <header class="bandeau bandeau--histoire">
@@ -377,6 +445,7 @@ async function construire() {
       ? `<h2 class="sous-titre">${enHtml(b.texte)}</h2>`
       : `<p>${enHtml(b.texte)}</p>`).join("\n    ")}
   </article>
+  ${carnetDeRoute(h.etapes || [])}
   ${galerie}
   <p class="fin"><a class="bouton" href="../../index.html">← Toutes les histoires</a></p>
 </main>`;
@@ -459,7 +528,11 @@ async function verifierOrthographe(intro, contact, histoires) {
     ...histoires.map((h) => ({
       nom: h.titre,
       texte: [h.titre, h.lieu, h.resume, h.duree, h.difficulte,
-        ...h.blocs.map((b) => (b.type === "sous-titre" ? "## " : "") + b.texte)].filter(Boolean).join("\n\n"),
+        ...h.blocs.map((b) => (b.type === "sous-titre" ? "## " : "") + b.texte),
+        ...(h.etapes || []).flatMap((e) => [e.jour, e.titre && "## " + e.titre,
+          ...e.blocs.map((b) => (b.type === "sous-titre" ? "## " : "") + b.texte),
+          ...e.photos.map((p) => p.legende)]),
+      ].filter(Boolean).join("\n\n"),
     })),
   ];
 
