@@ -1,0 +1,58 @@
+# Mots que le correcteur ne doit pas signaler : noms de lieux, mots ladakhis...
+# Un mot par ligne. Ajoutez-en autant que nécessaire.
+# (Les lignes qui commencent par # sont ignorées.)
+
+# Régions, villes et villages
+Ladakh
+Zanskar
+Leh
+Padum
+Kargil
+Lingshed
+Hemis
+Lamayuru
+Alchi
+Thiksey
+Phugtal
+Karsha
+Stongde
+Zangla
+Nubra
+Pangong
+Changthang
+Markha
+Stok
+Kangri
+Chadar
+Shingo
+Darcha
+Nimmu
+Rangdum
+Spiti
+Srinagar
+Manali
+
+# Adjectifs et habitants
+ladakhi
+ladakhis
+ladakhie
+ladakhies
+zanskari
+zanskaris
+zanskarie
+zanskaries
+
+# Mots du quotidien au Ladakh
+gompa
+gompas
+chorten
+chortens
+stupa
+stupas
+momos
+thukpa
+tsampa
+julley
+mani
+thangka
+thangkas

@@ -1,0 +1,14 @@
+{
+  "name": "blog-treks",
+  "private": true,
+  "scripts": {
+    "build": "node outils/construire.js",
+    "apercu": "node outils/construire.js --alleger --verifier"
+  },
+  "dependencies": {
+    "dictionary-fr": "^3.0.0",
+    "nspell": "^2.1.5",
+    "sharp": "^0.35.5",
+    "yaml": "^2.9.1"
+  }
+}

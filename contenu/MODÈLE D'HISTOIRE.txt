@@ -1,0 +1,14 @@
+TITRE : Le titre de votre histoire
+LIEU : De tel endroit à tel endroit
+RÉSUMÉ : Une ou deux phrases qui donnent envie de lire, affichées sur la page d'accueil.
+DURÉE : 8 jours
+ALTITUDE MAX : 5 090 m
+DIFFICULTÉ : Soutenue
+
+Premier paragraphe du récit. Laissez une ligne vide entre deux paragraphes.
+
+## Jour 1 : un sous-titre
+Le texte de cette étape. Vous pouvez mettre des **mots en gras** ou en *italique*.
+
+## Jour 2 : un autre sous-titre
+La suite du récit…

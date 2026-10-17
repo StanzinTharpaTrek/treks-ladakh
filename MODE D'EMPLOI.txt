@@ -1,0 +1,117 @@
+AJOUTER UNE HISTOIRE AU BLOG
+============================
+
+1. Ouvrez le dossier  contenu\histoires
+
+2. Créez un nouveau dossier. Commencez son nom par la date, par exemple :
+       2026-10-17 Ma nouvelle histoire
+
+3. Dans ce dossier, déposez :
+   - le texte de l'histoire : copiez le fichier  contenu\MODÈLE D'HISTOIRE.txt
+     dans le dossier, renommez-le  texte.txt  et remplacez les exemples.
+
+     En haut du fichier, une information par ligne, sous la forme MOT-CLÉ : valeur
+       TITRE : ...          (obligatoire) le titre, affiché en grand
+       LIEU : ...           (facultatif) affiché sous le titre
+       RÉSUMÉ : ...         (facultatif) le texte de la vignette sur l'accueil ;
+                            sans lui, c'est le premier paragraphe qui est utilisé
+       DURÉE : ...          (facultatif) ┐
+       ALTITUDE MAX : ...   (facultatif) ├ affichées en petites étiquettes
+       DIFFICULTÉ : ...     (facultatif) ┘
+     Une ligne inutile ? Supprimez-la simplement.
+
+     Puis, après une ligne vide, le récit :
+       * Laissez une ligne vide entre deux paragraphes.
+       * Une ligne qui commence par  ##  devient un sous-titre :
+             ## Jour 3 : le passage du col
+       * Facultatif : **mots en gras**  et  *mots en italique*
+
+   - vos photos (.jpg, .png...), telles quelles, sans les retoucher
+       * La photo nommée "couverture" (ou sinon la première par ordre
+         alphabétique) sert de vignette. Les autres forment une galerie.
+       * Pour choisir l'ordre de la galerie, numérotez-les : 02, 03, 04...
+       * Photos d'iPhone : le format HEIC n'est pas accepté. Réglez l'appareil
+         photo sur « Le plus compatible », ou envoyez-vous les photos par
+         WhatsApp / e-mail : elles arrivent alors en JPG.
+
+4. Double-cliquez sur « Aperçu du site » pour voir le résultat.
+
+LES PHOTOS SONT ALLÉGÉES AUTOMATIQUEMENT
+----------------------------------------
+Quand vous lancez « Aperçu du site », les photos trop lourdes du dossier
+contenu sont remplacées par une version légère (environ 10 fois moins lourde),
+pour pouvoir publier même avec une petite connexion.
+Les photos d'origine ne sont pas perdues : elles sont rangées dans le
+dossier  originaux.
+
+VÉRIFICATION DE L'ORTHOGRAPHE
+------------------------------
+« Aperçu du site » relit aussi tous les textes. S'il trouve des fautes
+probables, une page « Vérification orthographique » s'ouvre : chaque
+remarque montre la phrase, le mot en cause et une correction proposée.
+   * Rien n'est corrigé automatiquement : c'est vous qui corrigez vos
+     fichiers texte, puis relancez « Aperçu du site ».
+   * Avec Internet : orthographe ET grammaire (accords, conjugaisons).
+     Sans Internet : orthographe seulement.
+   * Un nom de lieu ou un mot ladakhi signalé à tort ? Ajoutez-le dans
+     contenumots-connus.txt  (un mot par ligne).
+   * Pendant l'écriture, le Bloc-notes souligne aussi les fautes en rouge
+     (si besoin : Paramètres du Bloc-notes > Vérification orthographique).
+
+MODIFIER L'ACCUEIL
+------------------
+Dossier  contenu\accueil :
+   - introduction.txt : 1re ligne = titre du blog, puis le texte d'introduction
+   - la photo d'en-tête : remplacez l'image (gardez une seule image dans ce dossier)
+
+MODIFIER LA PAGE CONTACT
+-------------------------
+Ouvrez  contenuaccueilcontact.txt  avec le Bloc-notes :
+   - 1re ligne : le titre de la page (par exemple : Contact)
+   - un texte libre si vous le souhaitez
+   - vos coordonnées, une par ligne, sous la forme  Libellé : valeur
+       E-mail : vous@exemple.com
+       Téléphone : +33 6 12 34 56 78
+       WhatsApp : +91 98765 43210
+       Site web : www.exemple.com
+     Les e-mails, numéros et sites deviennent cliquables automatiquement.
+     Pour retirer une ligne, supprimez-la simplement.
+
+Pour retirer une histoire : supprimez son dossier.
+Ne modifiez pas les dossiers  site, outils, modele  et  node_modules.
+
+PUBLIER SUR INTERNET
+====================
+Le site se met à jour tout seul 1 à 2 minutes après chaque envoi sur GitHub.
+
+Depuis votre ordinateur (avec GitHub Desktop) :
+   1. Ajoutez ou modifiez vos histoires dans le dossier  contenu
+   2. Double-cliquez sur « Aperçu du site » pour vérifier (et alléger les photos)
+   3. Ouvrez GitHub Desktop : vos changements apparaissent à gauche
+   4. En bas à gauche, écrivez un petit résumé (ex. : Nouvelle histoire Markha)
+      puis cliquez sur « Commit to main »
+   5. Cliquez sur « Push origin » en haut. C'est publié !
+
+Depuis n'importe quel ordinateur (navigateur, cybercafé...) :
+   1. Allez sur github.com, ouvrez le projet du blog, puis contenu > histoires
+   2. Cliquez sur « Add file » > « Upload files »
+   3. Glissez-déposez le dossier de votre nouvelle histoire (texte + photos)
+   4. Cliquez sur « Commit changes ». C'est publié !
+   Pour corriger une faute : ouvrez le fichier texte sur github.com,
+   cliquez sur le crayon, corrigez, puis « Commit changes ».
+
+Depuis un téléphone Android ou n'importe quel navigateur (Pages CMS) :
+   Première fois seulement :
+     a. Allez sur  app.pagescms.org  et cliquez sur « Sign in with GitHub »
+     b. Acceptez l'installation de Pages CMS sur le projet du blog
+   Ensuite, à chaque histoire :
+   1. Ouvrez  app.pagescms.org  puis le projet du blog
+   2. Menu « Histoires » > bouton « Add an entry » (ajouter)
+   3. Remplissez le formulaire : titre, date, lieu, récit...
+      Pour les photos, touchez « Photo de couverture » ou « Galerie photos »
+      et choisissez-les dans la galerie du téléphone.
+   4. Touchez « Save » (enregistrer). C'est publié dans 1 à 2 minutes !
+   Astuce : pour des envois plus rapides avec une petite connexion,
+   envoyez-vous d'abord les photos par WhatsApp : elles seront allégées.
+   Les menus « Accueil (introduction) » et « Page Contact » permettent
+   aussi de modifier ces textes.

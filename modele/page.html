@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titre}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{racine}}style.css">
+</head>
+<body>
+<nav class="menu">
+  <button class="menu__bouton" aria-expanded="false" aria-controls="menu-liens" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="menu__panneau" id="menu-liens" hidden>
+    <p class="menu__titre">{{blog}}</p>
+    <a href="{{racine}}index.html">Accueil</a>
+    <a href="{{racine}}index.html#recits">Récits de trek</a>
+    <a href="{{racine}}contact/index.html">Contact</a>
+  </div>
+</nav>
+{{corps}}
+<footer class="pied">Ladakh · Zanskar · Himalaya indien · <a href="{{racine}}contact/index.html">Nous contacter</a></footer>
+<script>
+  (() => {
+    const bouton = document.querySelector(".menu__bouton");
+    const panneau = document.getElementById("menu-liens");
+    const basculer = (ouvert) => {
+      bouton.setAttribute("aria-expanded", ouvert);
+      bouton.setAttribute("aria-label", ouvert ? "Fermer le menu" : "Ouvrir le menu");
+      panneau.hidden = !ouvert;
+    };
+    bouton.addEventListener("click", () => basculer(panneau.hidden));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") basculer(false); });
+    document.addEventListener("click", (e) => { if (!e.target.closest(".menu")) basculer(false); });
+    panneau.addEventListener("click", (e) => { if (e.target.closest("a")) basculer(false); });
+  })();
+
+  // Visionneuse : agrandit les photos de la galerie sans quitter la page.
+  (() => {
+    const liens = [...document.querySelectorAll(".galerie a")];
+    if (!liens.length) return;
+
+    const v = document.createElement("dialog");
+    v.className = "visionneuse";
+    v.innerHTML = `
+      <button class="visionneuse__retour" type="button">← Retour</button>
+      <span class="visionneuse__compteur"></span>
+      <img class="visionneuse__image" alt="">
+      <button class="visionneuse__fleche visionneuse__fleche--prec" type="button" aria-label="Photo précédente">‹</button>
+      <button class="visionneuse__fleche visionneuse__fleche--suiv" type="button" aria-label="Photo suivante">›</button>`;
+    document.body.append(v);
+    const image = v.querySelector(".visionneuse__image");
+    const compteur = v.querySelector(".visionneuse__compteur");
+    let actuelle = 0;
+
+    const afficher = (i) => {
+      actuelle = (i + liens.length) % liens.length;
+      image.src = liens[actuelle].href;
+      compteur.textContent = `${actuelle + 1} / ${liens.length}`;
+    };
+    const ouvrir = (i) => {
+      afficher(i);
+      v.showModal();
+      // Le bouton « retour » du téléphone ferme la visionneuse au lieu de quitter la page.
+      history.pushState({ visionneuse: true }, "");
+    };
+    const fermer = () => { if (v.open) v.close(); };
+    const retour = () => (history.state?.visionneuse ? history.back() : fermer());
+
+    liens.forEach((a, i) => a.addEventListener("click", (e) => { e.preventDefault(); ouvrir(i); }));
+    window.addEventListener("popstate", fermer);
+    v.addEventListener("close", () => {
+      if (history.state?.visionneuse) history.back();
+      liens[actuelle].focus({ preventScroll: true });
+      liens[actuelle].scrollIntoView({ block: "nearest" });
+    });
+    v.addEventListener("cancel", (e) => { e.preventDefault(); retour(); });
+    v.querySelector(".visionneuse__retour").addEventListener("click", retour);
+    v.querySelector(".visionneuse__fleche--prec").addEventListener("click", () => afficher(actuelle - 1));
+    v.querySelector(".visionneuse__fleche--suiv").addEventListener("click", () => afficher(actuelle + 1));
+    v.addEventListener("click", (e) => { if (e.target === v) retour(); });
+    v.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") afficher(actuelle - 1);
+      if (e.key === "ArrowRight") afficher(actuelle + 1);
+    });
+    let debutX = null;
+    v.addEventListener("touchstart", (e) => { debutX = e.touches[0].clientX; }, { passive: true });
+    v.addEventListener("touchend", (e) => {
+      const dx = e.changedTouches[0].clientX - debutX;
+      if (Math.abs(dx) > 50) afficher(actuelle + (dx < 0 ? 1 : -1));
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/* Couleurs et polices : modifiez ces valeurs pour changer l'ambiance du site.
+   Palette inspirée du Ladakh : murs blanchis des monastères, robes bordeaux
+   des moines, safran, ciel d'altitude et drapeaux de prière. */
+:root {
+  --fond: #f6f0e4;          /* pierre claire, papier ancien */
+  --carte: #fffcf6;
+  --texte: #2c241f;
+  --discret: #7d6e60;
+  --bordeaux: #7b1e2b;      /* robes des moines */
+  --safran: #d08a1e;
+  --ciel: #1d4e7a;          /* ciel d'altitude */
+  --bordure: #e6dccb;
+  --hauteur-bandeau: 75vh;
+  --titres: "Marcellus", Georgia, serif;
+  --corps: "Source Sans 3", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fond); color: var(--texte); font: 18px/1.7 var(--corps); }
+h1, h2, h3 { font-family: var(--titres); font-weight: 400; line-height: 1.15; }
+a { color: var(--bordeaux); }
+img { display: block; max-width: 100%; }
+
+/* --- Bandeau photo --- */
+.bandeau { position: relative; height: var(--hauteur-bandeau); overflow: hidden; color: #fff; background: var(--ciel); }
+.bandeau--fixe { position: fixed; inset: 0 0 auto 0; z-index: 0; }
+.bandeau--histoire { height: 60vh; }
+.bandeau__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bandeau__voile { position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(10 25 45 / .05) 40%, rgb(10 20 35 / .6)); }
+.bandeau__texte { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 16px 3rem; max-width: 1040px; margin: 0 auto; }
+.bandeau h1 { font-size: clamp(2.4rem, 7vw, 4.6rem); margin: 0; letter-spacing: .01em; text-shadow: 0 2px 16px rgb(0 0 0 / .4); }
+.bandeau .date { margin: .5rem 0 0; opacity: .92; letter-spacing: .06em; text-transform: uppercase; font-size: .9rem; }
+.retour { color: #fff; text-decoration: none; opacity: .9; font-weight: 600; font-size: .95rem; }
+.retour:hover { opacity: 1; text-decoration: underline; }
+
+/* --- Guirlande de drapeaux de prière (bleu, blanc, rouge, vert, jaune) --- */
+.drapeaux {
+  position: relative; z-index: 1; height: 20px;
+  background:
+    linear-gradient(#8f7f6b, #8f7f6b) top / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg,
+      #2f6db3 0 26px, transparent 26px 34px,
+      #ddd3bf 34px 60px, transparent 60px 68px,
+      #c23a2b 68px 94px, transparent 94px 102px,
+      #2f8a57 102px 128px, transparent 128px 136px,
+      #e4b02a 136px 162px, transparent 162px 170px) bottom / 100% 17px no-repeat;
+}
+.contenu--sur-bandeau .drapeaux { position: absolute; top: 18px; left: 0; right: 0; max-width: none; opacity: .9; }
+
+/* --- Contenu : sur l'accueil, il glisse par-dessus la photo fixe --- */
+.contenu { position: relative; z-index: 1; background: var(--fond); padding: 3rem 16px 4rem; }
+.contenu > * { max-width: 1040px; margin-left: auto; margin-right: auto; }
+.contenu--sur-bandeau { margin-top: var(--hauteur-bandeau); padding-top: 5rem; border-radius: 22px 22px 0 0; box-shadow: 0 -12px 36px rgb(0 0 0 / .18); overflow: hidden; }
+
+.intro { font-size: 1.22rem; margin-bottom: 4rem; }
+.intro p { max-width: 740px; }
+.intro p:first-child::first-letter { font-family: var(--titres); font-size: 3.4em; float: left; line-height: .9; margin: .06em .12em 0 0; color: var(--bordeaux); }
+h2 { font-size: 2rem; margin: 0 auto 1.6rem; color: var(--ciel); display: flex; align-items: center; gap: .9rem; }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--bordure); }
+
+/* --- Cartes des histoires --- */
+.cartes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.75rem; }
+.carte { display: flex; flex-direction: column; background: var(--carte); border: 1px solid var(--bordure); border-top: 4px solid var(--bordeaux); border-radius: 6px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.carte:nth-child(3n+2) { border-top-color: var(--safran); }
+.carte:nth-child(3n+3) { border-top-color: var(--ciel); }
+.carte:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgb(60 35 20 / .14); }
+.carte__image { aspect-ratio: 3 / 2; background: var(--bordure); overflow: hidden; }
+.carte__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.carte:hover .carte__image img { transform: scale(1.04); }
+.carte__texte { padding: 1.2rem 1.3rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.carte h3 { font-size: 1.7rem; margin: .3rem 0 .4rem; color: var(--bordeaux); }
+.carte p { margin: 0 0 1rem; font-size: 1rem; }
+.carte .date { color: var(--safran); font-size: .8rem; margin: 0; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+.lire { margin-top: auto; color: var(--bordeaux); font-weight: 600; }
+
+/* --- Page d'une histoire --- */
+.recit { max-width: 700px; font-size: 1.15rem; }
+.recit > p:first-of-type::first-letter { font-family: var(--titres); font-size: 3.2em; float: left; line-height: .9; margin: .06em .12em 0 0; color: var(--bordeaux); }
+.galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .75rem; margin-top: 3rem; }
+.galerie img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; transition: opacity .2s; }
+.galerie a:hover img { opacity: .85; }
+.fin { margin-top: 3rem; max-width: 700px; }
+.bouton { display: inline-block; padding: .75rem 1.4rem; border-radius: 4px; background: var(--bordeaux); color: #fff; text-decoration: none; font-weight: 600; }
+.bouton:hover { background: #5f1520; }
+
+.pied { position: relative; z-index: 1; background: var(--fond); text-align: center; color: var(--discret); font-size: .9rem; padding: 0 16px 2.5rem; }
+
+/* --- Menu burger (en haut à gauche, sur toutes les pages) --- */
+.menu { position: fixed; top: 16px; left: 16px; z-index: 10; }
+.menu__bouton { width: 48px; height: 48px; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-content: center; gap: 5px; background: rgb(28 22 18 / .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 2px 10px rgb(0 0 0 / .25); transition: background .2s; }
+.menu__bouton:hover, .menu__bouton[aria-expanded="true"] { background: var(--bordeaux); }
+.menu__bouton:focus-visible { outline: 3px solid var(--safran); outline-offset: 2px; }
+.menu__bouton span { display: block; width: 20px; height: 2px; border-radius: 2px; background: #fff; transition: transform .25s, opacity .25s; }
+.menu__bouton[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu__bouton[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu__bouton[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu__panneau { position: absolute; top: 58px; left: 0; min-width: 230px; padding: .6rem 0; background: var(--carte); border-radius: 8px; border-top: 4px solid var(--bordeaux); box-shadow: 0 14px 34px rgb(0 0 0 / .25); animation: apparition .18s ease-out; }
+.menu__panneau[hidden] { display: none; }
+.menu__titre { margin: 0; padding: .3rem 1.2rem .6rem; font-family: var(--titres); color: var(--discret); font-size: .95rem; border-bottom: 1px solid var(--bordure); }
+.menu__panneau a { display: block; padding: .65rem 1.2rem; color: var(--texte); text-decoration: none; font-weight: 600; }
+.menu__panneau a:hover, .menu__panneau a:focus-visible { background: var(--fond); color: var(--bordeaux); outline: none; }
+@keyframes apparition { from { opacity: 0; transform: translateY(-6px); } }
+
+.bandeau--court { height: 40vh; min-height: 260px; }
+
+/* --- Page contact --- */
+.coordonnees { margin: 2rem 0; padding: 1.5rem 1.75rem; background: var(--carte); border: 1px solid var(--bordure); border-left: 4px solid var(--safran); border-radius: 6px; display: grid; gap: .9rem; }
+.coordonnees div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: baseline; }
+.coordonnees dt { color: var(--discret); font-size: .85rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+.coordonnees dd { margin: 0; overflow-wrap: anywhere; }
+.coordonnees a { text-decoration: none; font-weight: 600; }
+.coordonnees a:hover { text-decoration: underline; }
+.contact > p:first-of-type::first-letter { all: unset; }
+@media (max-width: 520px) { .coordonnees div { grid-template-columns: 1fr; gap: .1rem; } }
+.pied a { color: var(--bordeaux); }
+
+/* --- Visionneuse de photos --- */
+.galerie a { display: block; border-radius: 4px; }
+.galerie a:focus-visible { outline: 3px solid var(--safran); outline-offset: 3px; }
+.visionneuse { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 70px 16px 24px; border: 0; background: rgb(15 11 9 / .94); color: #fff; }
+.visionneuse[open] { display: flex; align-items: center; justify-content: center; animation: apparition .18s ease-out; }
+.visionneuse::backdrop { background: transparent; }
+.visionneuse__image { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 40px rgb(0 0 0 / .5); }
+.visionneuse__retour { position: absolute; top: 16px; left: 16px; padding: .6rem 1.2rem; border: 0; border-radius: 999px; background: var(--bordeaux); color: #fff; font: 600 1rem var(--corps); cursor: pointer; box-shadow: 0 2px 10px rgb(0 0 0 / .3); }
+.visionneuse__retour:hover { background: #5f1520; }
+.visionneuse__compteur { position: absolute; top: 24px; right: 20px; font-size: .9rem; letter-spacing: .08em; opacity: .75; }
+.visionneuse__fleche { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border: 0; border-radius: 50%; background: rgb(255 255 255 / .14); color: #fff; font-size: 2.2rem; line-height: 1; cursor: pointer; transition: background .2s; }
+.visionneuse__fleche:hover { background: rgb(255 255 255 / .28); }
+.visionneuse__fleche--prec { left: 16px; }
+.visionneuse__fleche--suiv { right: 16px; }
+.visionneuse button:focus-visible { outline: 3px solid var(--safran); outline-offset: 2px; }
+@media (min-width: 601px) { .visionneuse { padding: 70px 84px 24px; } }
+@media (max-width: 600px) { .visionneuse { padding-bottom: 90px; } .visionneuse__fleche { top: auto; bottom: 20px; transform: none; } }
+
+/* --- Titres mis en évidence, lieu, sous-titres et infos trek --- */
+.bandeau--histoire h1 { font-size: clamp(2.6rem, 8vw, 5.2rem); }
+.bandeau--histoire h1::after { content: ""; display: block; width: 90px; height: 4px; margin-top: .9rem; border-radius: 2px; background: var(--safran); }
+.bandeau .lieu { text-transform: none; letter-spacing: .02em; font-size: 1.05rem; font-weight: 600; }
+.carte .lieu { margin: 0 0 .8rem; color: var(--discret); font-style: italic; font-size: .98rem; }
+.carte .etiquettes { margin: -.2rem 0 1.1rem; }
+
+.sous-titre { font-size: 1.75rem; color: var(--ciel); margin: 2.6rem 0 .8rem; display: block; }
+.sous-titre::before { content: ""; display: block; width: 40px; height: 3px; margin-bottom: .7rem; border-radius: 2px; background: var(--bordeaux); }
+.sous-titre::after { content: none; }
+
+.etiquettes { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+.etiquettes li { padding: .3rem .8rem; border-radius: 999px; background: var(--carte); border: 1px solid var(--bordure); font-size: .9rem; font-weight: 600; }
+.etiquettes span { color: var(--discret); font-weight: 400; margin-right: .2rem; }
+.carte .etiquettes li { font-size: .8rem; padding: .2rem .65rem; background: var(--fond); }
+.coordonnees a.whatsapp { display: inline-block; margin-left: .6rem; padding: .15rem .7rem; border-radius: 999px; background: #1f8f4e; color: #fff; font-size: .85rem; vertical-align: 1px; }
+.coordonnees a.whatsapp:hover { background: #17733e; text-decoration: none; }

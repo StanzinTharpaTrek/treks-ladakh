@@ -1,0 +1,92 @@
+# Configuration de Pages CMS (https://app.pagescms.org) :
+# l'interface en ligne pour écrire les histoires depuis un téléphone ou un navigateur.
+
+media:
+  - name: photos
+    label: Photos
+    input: contenu/photos
+    output: photos
+    categories: [image]
+    rename: safe
+
+content:
+  - name: histoires
+    label: Histoires
+    type: collection
+    path: contenu/histoires
+    format: yaml-frontmatter
+    subfolders: false
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [titre, date, lieu]
+      primary: titre
+      sort: [date, titre]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: titre
+        label: Titre
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: lieu
+        label: Lieu
+        type: string
+        description: "Facultatif. Exemple : De Leh à Padum"
+      - name: resume
+        label: Résumé
+        type: text
+        description: "Facultatif. Une ou deux phrases pour la vignette de l'accueil. Sans résumé, le premier paragraphe est utilisé."
+        options:
+          maxlength: 300
+      - name: duree
+        label: Durée
+        type: string
+        description: "Facultatif. Exemple : 8 jours"
+      - name: altitude
+        label: Altitude max
+        type: string
+        description: "Facultatif. Exemple : 5 090 m"
+      - name: difficulte
+        label: Difficulté
+        type: select
+        options:
+          values: [Facile, Modérée, Soutenue, Difficile]
+          placeholder: "Facultatif"
+      - name: couverture
+        label: Photo de couverture
+        type: image
+        description: "La photo affichée en grand en haut de l'histoire et sur la vignette."
+        options:
+          media: photos
+      - name: galerie
+        label: Galerie photos
+        type: image
+        description: "Les autres photos, affichées en bas de l'histoire."
+        options:
+          media: photos
+          multiple:
+            max: 40
+      - name: body
+        label: Récit
+        type: text
+        required: true
+        description: "Laissez une ligne vide entre deux paragraphes. Une ligne qui commence par ## devient un sous-titre (exemple : ## Jour 2 : le col). **gras** et *italique* sont possibles."
+
+  - name: introduction
+    label: Accueil (introduction)
+    type: file
+    path: contenu/accueil/introduction.txt
+    format: raw
+
+  - name: contact
+    label: Page Contact
+    type: file
+    path: contenu/accueil/contact.txt
+    format: raw
