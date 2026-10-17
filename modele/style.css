@@ -197,3 +197,22 @@ h2::after { content: ""; flex: 1; height: 1px; background: var(--bordure); }
 .visionneuse__cadre .visionneuse__image { max-height: calc(100dvh - 150px); }
 .visionneuse__legende { margin-top: .7rem; text-align: center; font-size: .98rem; opacity: .9; }
 .visionneuse__legende:empty { display: none; }
+
+/* --- Sommaire et chapitres des longues histoires --- */
+.sommaire { max-width: 880px; margin: 2.5rem auto 0; padding: 1.4rem 1.6rem 1.2rem; background: var(--carte); border: 1px solid var(--bordure); border-top: 4px solid var(--safran); border-radius: 6px; }
+.sommaire__titre { margin: 0 0 .8rem; font-family: var(--titres); font-size: 1.35rem; color: var(--ciel); }
+.sommaire ol { list-style: none; margin: 0 0 .9rem; padding: 0; columns: 2 260px; column-gap: 2rem; }
+.sommaire li { break-inside: avoid; margin-bottom: .3rem; }
+.sommaire li a { color: var(--texte); text-decoration: none; font-size: .98rem; }
+.sommaire li a:hover { color: var(--bordeaux); text-decoration: underline; }
+.sommaire li span { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-right: .35rem; border-radius: 50%; background: var(--fond); color: var(--bordeaux); font-size: .75rem; font-weight: 600; }
+.sommaire__nom { display: block; margin: .3rem 0 .45rem; color: var(--bordeaux); font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+.sommaire__nom:hover { text-decoration: underline; }
+
+.chapitre { max-width: 880px; margin: 4.5rem auto 2.2rem; padding-top: 1.6rem; border-top: 1px solid var(--bordure); font-size: clamp(2rem, 5vw, 2.8rem); color: var(--bordeaux); }
+.chapitre::after { content: none; }
+.chapitre::before { content: ""; display: block; width: 70px; height: 4px; margin-bottom: 1rem; border-radius: 2px; background: var(--safran); }
+.carnet + .chapitre { margin-top: 2.5rem; }
+.carnet { margin-top: 2rem; }
+html { scroll-behavior: smooth; }
+.etape, .chapitre { scroll-margin-top: 80px; }

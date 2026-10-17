@@ -78,6 +78,10 @@ content:
             collapsed: true
             summary: "{index}. {titre}"
         fields:
+          - name: chapitre
+            label: Chapitre
+            type: string
+            description: "Facultatif, pour les longs voyages. Exemple : Le trek de Shang La. Un grand titre de chapitre s'affiche à chaque changement ; laissez vide pour rester dans le même chapitre que l'étape précédente."
           - name: titre
             label: Titre de l'étape
             type: string

@@ -95,6 +95,7 @@ function lireHistoireCms(fichier) {
 
   // Étapes du carnet de route : titre, infos facultatives, texte et photos légendées.
   const etapes = [].concat(infos.etapes || []).filter((e) => e && typeof e === "object").map((e) => ({
+    chapitre: enTexte(e.chapitre),
     titre: enTexte(e.titre),
     jour: enTexte(e.jour),
     temps: enTexte(e.temps),
@@ -142,17 +143,51 @@ function figurePhoto(fichier, legende) {
       </figure>`;
 }
 
-// Le carnet de route : les étapes reliées par un fil, chacune avec ses photos.
+// Regroupe les étapes consécutives d'un même chapitre (champ « Chapitre » facultatif).
+function parChapitre(etapes) {
+  const groupes = [];
+  etapes.forEach((e, i) => {
+    const dernier = groupes[groupes.length - 1];
+    if (!dernier || (e.chapitre && e.chapitre !== dernier.titre)) {
+      groupes.push({ titre: e.chapitre, etapes: [] });
+    }
+    groupes[groupes.length - 1].etapes.push({ ...e, numero: i + 1 });
+  });
+  return groupes;
+}
+
+// Sommaire cliquable, utile pour les longues histoires (4 étapes ou plus).
+function sommaire(etapes) {
+  if (etapes.length < 4) return "";
+  const lien = (e) => `<li><a href="#etape-${e.numero}"><span>${e.numero}</span> ${echapper(e.titre || "Étape " + e.numero)}</a></li>`;
+  const groupes = parChapitre(etapes);
+  return `<nav class="sommaire" aria-label="Sommaire">
+    <p class="sommaire__titre">Au fil du voyage</p>
+    ${groupes.map((g, i) => g.titre
+      ? `<div class="sommaire__chapitre"><a class="sommaire__nom" href="#chapitre-${i + 1}">${echapper(g.titre)}</a><ol>${g.etapes.map(lien).join("")}</ol></div>`
+      : `<ol>${g.etapes.map(lien).join("")}</ol>`).join("\n    ")}
+  </nav>`;
+}
+
+// Le carnet de route : les étapes reliées par un fil, chacune avec ses photos,
+// regroupées en chapitres si le champ « Chapitre » est utilisé.
 function carnetDeRoute(etapes) {
   if (!etapes.length) return "";
-  const infos = (e) => [["Temps de marche", e.temps], ["Altitude max", e.altitude], ["D+", e.dplus], ["D−", e.dmoins]]
+  return parChapitre(etapes).map((g, i) => `
+  ${g.titre ? `<h2 class="chapitre" id="chapitre-${i + 1}">${echapper(g.titre)}</h2>` : ""}
+  <ol class="carnet" start="${g.etapes[0].numero}">${g.etapes.map(etapeHtml).join("")}
+  </ol>`).join("");
+}
+
+function etapeHtml(e) {
+  const infos = [["Temps de marche", e.temps], ["Altitude max", e.altitude], ["D+", e.dplus], ["D−", e.dmoins]]
     .filter(([, v]) => v);
-  return `<ol class="carnet">${etapes.map((e, i) => `
-    <li class="etape">
-      <span class="etape__repere" aria-hidden="true">${i + 1}</span>
+  return `
+    <li class="etape" id="etape-${e.numero}">
+      <span class="etape__repere" aria-hidden="true">${e.numero}</span>
       ${e.jour ? `<p class="etape__jour">${echapper(e.jour)}</p>` : ""}
       ${e.titre ? `<h2 class="etape__titre">${echapper(e.titre)}</h2>` : ""}
-      ${infos(e).length ? `<ul class="etiquettes">${infos(e).map(([l, v]) =>
+      ${infos.length ? `<ul class="etiquettes">${infos.map(([l, v]) =>
         `<li><span>${l}</span> ${echapper(v)}</li>`).join("")}</ul>` : ""}
       ${e.blocs.map((b) => b.type === "sous-titre"
         ? `<h3 class="sous-titre">${enHtml(b.texte)}</h3>`
@@ -160,8 +195,7 @@ function carnetDeRoute(etapes) {
       ${e.photos.length ? `<div class="photos photos--${Math.min(e.photos.length, 5)}">
       ${e.photos.map((p) => figurePhoto(p.fichier, p.legende)).join("\n      ")}
       </div>` : ""}
-    </li>`).join("")}
-  </ol>`;
+    </li>`;
 }
 
 // Retrouve une photo choisie dans Pages CMS (ex. « photos/col.jpg ») dans contenu/photos.
@@ -445,6 +479,7 @@ async function construire() {
       ? `<h2 class="sous-titre">${enHtml(b.texte)}</h2>`
       : `<p>${enHtml(b.texte)}</p>`).join("\n    ")}
   </article>
+  ${sommaire(h.etapes || [])}
   ${carnetDeRoute(h.etapes || [])}
   ${galerie}
   <p class="fin"><a class="bouton" href="../../index.html">← Toutes les histoires</a></p>
@@ -529,9 +564,9 @@ async function verifierOrthographe(intro, contact, histoires) {
       nom: h.titre,
       texte: [h.titre, h.lieu, h.resume, h.duree, h.difficulte,
         ...h.blocs.map((b) => (b.type === "sous-titre" ? "## " : "") + b.texte),
-        ...(h.etapes || []).flatMap((e) => [e.jour, e.titre && "## " + e.titre,
+        ...(h.etapes || []).flatMap((e) => [e.chapitre, e.jour, e.titre && "## " + e.titre,
           ...e.blocs.map((b) => (b.type === "sous-titre" ? "## " : "") + b.texte),
-          ...e.photos.map((p) => p.legende)]),
+          ...e.photos.map((p) => p.legende && (/[.!?…]$/.test(p.legende) ? p.legende : p.legende + "."))]),
       ].filter(Boolean).join("\n\n"),
     })),
   ];
