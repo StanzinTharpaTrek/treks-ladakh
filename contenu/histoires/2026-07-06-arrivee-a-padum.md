@@ -1,6 +1,6 @@
 ---
 titre: Arrivée à Padum après une halte à Pidmo
-date: 2026-07-06
+date: 2026-07-11
 lieu: Padum, Zanskar
 resume: >-
   Découverte de la famille de Stanzin à Pidmo. Un repas de midi nous attendait
