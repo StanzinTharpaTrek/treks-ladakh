@@ -2,10 +2,10 @@
 titre: La route du Zanskar
 date: 2026-07-05
 lieu: De Leh à Padum
-resume: Une journée de route spectaculaire, des gorges du fleuve aux grandes
+resume: Une matinée de route spectaculaire, des gorges du fleuve aux grandes
   vallées d'altitude du Zanskar.
-duree: 2 jours
-altitude: 4 400 m
+duree: "4 heures "
+altitude: 3 700 m
 difficulte: Facile
 couverture: photos/la-route-du-zanskar-couverture.jpg
 galerie:
@@ -19,12 +19,12 @@ galerie:
   - photos/la-route-du-zanskar-09.jpg
   - photos/la-route-du-zanskar-10.jpg
 ---
-Une longue journée de route nous attendait pour rejoindre le Zanskar. Départ à l'aube, le minibus chargé de sacs et de bonne humeur.
+Une route magnifique nous attendait pour rejoindre le Zanskar. Départ à l'aube, le minibus chargé de sacs et de bonne humeur.
 
 ## Les gorges du fleuve
-La piste suit les gorges du fleuve, entre falaises rouges et ponts suspendus ornés de drapeaux de prière. On s'arrête souvent, pour une photo ou simplement pour regarder.
+La route suit les gorges du fleuve, bordées de falaises rouges. On s'arrête souvent, pour une photo ou simplement pour admirer.
 
 ## Les grandes vallées
-Au fil des kilomètres, les gorges s'élargissent en grandes vallées d'altitude.
+Au fil des kilomètres, les gorges s'élargissent en grandes vallées d'altitude et on arrive à Padum.
 
 **Un paysage immense**, presque lunaire, qui annonce les jours de marche à venir.
