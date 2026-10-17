@@ -1,6 +1,6 @@
 ---
 titre: Premiers jours à Leh
-date: 2026-07-02
+date: 2026-07-10
 lieu: Leh, Ladakh
 couverture: photos/premiers-jours-a-leh-couverture.jpg
 galerie:
