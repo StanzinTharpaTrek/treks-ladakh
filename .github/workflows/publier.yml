@@ -40,3 +40,7 @@ jobs:
           path: site
       - id: deploiement
         uses: actions/deploy-pages@v4
+      # Prévient Bing & co (protocole IndexNow). Un échec ici n'empêche pas la publication.
+      - name: Prévenir les moteurs de recherche
+        run: node outils/indexnow.js
+        continue-on-error: true
