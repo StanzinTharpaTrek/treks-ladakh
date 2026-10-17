@@ -85,6 +85,10 @@ PUBLIER SUR INTERNET
 Le site se met à jour tout seul 1 à 2 minutes après chaque envoi sur GitHub.
 
 Depuis votre ordinateur (avec GitHub Desktop) :
+   0. IMPORTANT si vous avez aussi utilisé le téléphone (Pages CMS) :
+      ouvrez d'abord GitHub Desktop et cliquez sur « Fetch origin » puis
+      « Pull origin », pour récupérer sur l'ordinateur ce que vous avez
+      publié depuis le téléphone.
    1. Ajoutez ou modifiez vos histoires dans le dossier  contenu
    2. Double-cliquez sur « Aperçu du site » pour vérifier (et alléger les photos)
    3. Ouvrez GitHub Desktop : vos changements apparaissent à gauche
