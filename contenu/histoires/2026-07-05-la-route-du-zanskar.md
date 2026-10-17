@@ -1,6 +1,6 @@
 ---
 titre: La route du Zanskar
-date: 2026-07-05
+date: 2026-07-11
 lieu: De Leh à Padum
 resume: Une matinée de route spectaculaire, des gorges du fleuve aux grandes
   vallées d'altitude du Zanskar.
