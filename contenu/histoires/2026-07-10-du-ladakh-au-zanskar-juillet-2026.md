@@ -168,35 +168,47 @@ etapes:
       - image: photos/vallee-de-sham-07.jpg
       - image: photos/vallee-de-sham-08.jpg
   - titre: Rencontres
-    texte: Au détour d'une ruelle, deux grands-mères aux bonnets rouges nous
-      accueillent d'un sourire et nous invitent à nous asseoir près d'elles, au
-      soleil. C'est souvent dans ces moments simples que le voyage prend tout
-      son sens.
+    texte: Au détour d'une ruelle, rencontre avec deux grands-mères aux bonnets
+      rouges qui nous accueillent d'un sourire et nous invitent à nous asseoir
+      près d'elles, au soleil.
     photos:
       - image: photos/vallee-de-sham-10.jpg
       - image: photos/vallee-de-sham-09.jpg
   - titre: La douceur du trek
-    texte: "Pique-nique sur les galets de la rivière, petit-déjeuner en terrasse
-      face aux sommets, nuit confortable chez l'habitant : le baby trek porte
-      bien son nom. En deux jours, c'est une première approche du Ladakh, tout
-      en douceur, qui donne envie d'aller plus loin."
+    texte: >-
+      Repas chaud sur la berge du torrent apporté par nos cuisiniers qui nous
+      ont rejoints en voiture, puis à l’arrivée, un peu de détente en terrasse
+      face aux sommets avant un excellent repas et une nuit dans un « homestay »
+      grand luxe.
+
+      Le baby trek porte bien son nom : en deux jours (ou 3 jours, selon), c'est
+      une première approche du Ladakh, tout en douceur, nous permettant de nous
+      acclimater à l’altitude et qui donne envie d'aller plus loin.
     photos:
       - image: photos/vallee-de-sham-12.jpg
       - image: photos/vallee-de-sham-11.jpg
       - image: photos/vallee-de-sham-14.jpg
   - chapitre: En route vers le lac de Tso Moriri
     titre: Par-delà les cols
-    texte: Cap vers l'est et le haut plateau du Changthang. La route remonte des
+    texte: >-
+      Cap vers l'est et le haut plateau du Changthang. La route remonte des
       gorges profondes, puis franchit des cols ornés de milliers de drapeaux de
-      prière, où l'on s'arrête pour souffler et prendre la photo de groupe.
+      prière.
+
+      Col à 4800 mètres, souffles un peu courts, mais tout va bien, tous trop
+      heureux de vivre ces moments intenses au milieu de ces paysages
+      exceptionnels..
     photos:
       - image: photos/tso-moriri-02.jpg
       - image: photos/tso-moriri-03.jpg
       - image: photos/tso-moriri-05.jpg
-  - titre: Le lac de Tso Moriri
-    texte: "Puis le lac apparaît : une immense étendue bleue à plus de 4 500 mètres
-      d'altitude, où les montagnes se reflètent comme dans un miroir. Installés
-      face à l'eau, on reste de longues minutes à contempler le paysage."
+  - titre: Le lac Tso Moriri
+    texte: >-
+      Puis le lac apparaît : une immense étendue bleue à plus de 4 500 mètres
+      d'altitude, sur le haut plateau tibétain où les montagnes se reflètent
+      comme dans un miroir. 
+
+      Moment de contemplation au milieu d’un paysage d’une sérénité absolue..
     photos:
       - image: photos/tso-moriri-06.jpg
       - image: photos/tso-moriri-16.jpg
@@ -204,9 +216,12 @@ etapes:
       - image: photos/tso-moriri-08.jpg
       - image: photos/tso-moriri-09.jpg
   - titre: Au camp, sur le haut plateau
-    texte: Le camp est planté dans une prairie verdoyante, au pied de sommets
+    texte: >-
+      Le camp est planté dans une prairie verdoyante, au pied de sommets
       enneigés. Ici vivent des bergers nomades et leurs troupeaux de chèvres,
       qui donnent la précieuse laine pashmina. Le soir, le silence est total.
+
+      L’immensité force le respect.
     photos:
       - image: photos/tso-moriri-18.jpg
       - image: photos/tso-moriri-07.jpg
