@@ -146,10 +146,14 @@ etapes:
       - image: photos/vallee-de-sham-13.jpg
   - titre: De col en col
     altitude: 3 900 m
-    texte: "Chaque col est marqué d'un cairn et de drapeaux de prière qui claquent
-      au vent. Le rituel est toujours le même : souffler un peu, admirer la vue
-      et poser, bras levés, pour la photo souvenir. Le point culminant du trek
-      atteint 3 900 mètres."
+    texte: >-
+      Stanzin nous a rejoint pour apporter une ligne de drapeaux à prière que
+      nous ajoutons aux autres au sommet du col.
+
+      On souffle, on s’hydrate, on admire la vue et on pose pour la photo
+      souvenir. 
+
+      Le point culminant du trek atteint 3 900 mètres.
     photos:
       - image: photos/vallee-de-sham-16.jpg
       - image: photos/vallee-de-sham-05.jpg
