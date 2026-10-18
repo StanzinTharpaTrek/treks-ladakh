@@ -128,13 +128,6 @@ etapes:
       - image: photos/arrivee-a-padum-04.jpg
       - image: photos/arrivee-a-padum-couverture.jpg
       - image: photos/arrivee-a-padum-05.jpg
-  - chapitre: Le baby trek de la vallée de Sham
-    titre: A l'arrivée des deux jours, un repas nous attend
-    texte: Arrivée après 2 magnifiques journées de marche, le 4x4 avec les
-      cuisiniers et les repas nous attendent..
-    photos:
-      - image: photos/vallee-de-sham-03.jpg
-      - image: photos/vallee-de-sham-04.jpg
   - titre: Des montagnes de toutes les couleurs
     texte: >-
       Très vite, le paysage change : les collines se parent d'ocre, de rouge, de
@@ -191,6 +184,13 @@ etapes:
       - image: photos/vallee-de-sham-12.jpg
       - image: photos/vallee-de-sham-11.jpg
       - image: photos/vallee-de-sham-14.jpg
+  - chapitre: Le baby trek de la vallée de Sham
+    titre: A l'arrivée des deux jours, un repas nous attend
+    texte: Arrivée après 2 magnifiques journées de marche, le 4x4 avec les
+      cuisiniers et les repas nous attendent..
+    photos:
+      - image: photos/vallee-de-sham-03.jpg
+      - image: photos/vallee-de-sham-04.jpg
   - chapitre: En route vers le lac de Tso Moriri
     titre: Par-delà les cols
     texte: >-
