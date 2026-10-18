@@ -50,29 +50,33 @@
     panneau.addEventListener("click", (e) => { if (e.target.closest("a")) basculer(false); });
   })();
 
-  // Accueil : les images autour de l'introduction (cartes, photo) prennent une même hauteur,
-  // la plus grande possible en laissant au texte au moins 60 % de la ligne, sans dépasser le texte.
+  // Accueil : les images autour de l'introduction (cartes, photo) vont du haut au bas du texte.
+  // Elles se partagent la moitié de la ligne ; si leurs proportions demandent plus large,
+  // elles sont recadrées sur les côtés (object-fit: cover) et restent entières dans la visionneuse.
   (() => {
     const intro = document.querySelector(".intro");
     const texte = document.querySelector(".intro__texte");
     const images = [...document.querySelectorAll(".intro__cartes img, .intro__portrait img")];
     if (!intro || !texte || !images.length) return;
-    const petitEcran = matchMedia("(max-width: 1000px)");
+    const petitEcran = matchMedia("(max-width: 1100px)");
     const ajuster = () => {
-      if (petitEcran.matches) return intro.style.removeProperty("--hauteur-images");
+      if (petitEcran.matches) {
+        ["--hauteur-images", "--decalage-images"].forEach((v) => intro.style.removeProperty(v));
+        return images.forEach((i) => i.style.removeProperty("width"));
+      }
       if (images.some((i) => !i.naturalWidth)) return;
-      const largeurs = images.reduce((s, i) => s + i.naturalWidth / i.naturalHeight, 0);
+      const proportions = images.map((i) => i.naturalWidth / i.naturalHeight);
+      const somme = proportions.reduce((s, p) => s + p, 0);
       const ecart = parseFloat(getComputedStyle(intro).columnGap) || 0;
-      // Écarts entre les 4 blocs, plus la marge haute des images (alignées sur le haut du texte).
-      const place = intro.clientWidth * 0.4 - ecart * images.length;
-      let hauteur = place / largeurs;
-      intro.style.setProperty("--hauteur-images", hauteur + "px");
+      const place = intro.clientWidth * 0.5 - ecart * images.length;
       // La hauteur du texte dépend de sa largeur : quelques passes suffisent à se stabiliser.
-      for (let n = 0; n < 4; n++) {
-        const decalage = images[0].getBoundingClientRect().top - texte.getBoundingClientRect().top;
-        const hauteurTexte = texte.lastElementChild.getBoundingClientRect().bottom - texte.getBoundingClientRect().top - decalage;
-        hauteur = Math.min(place / largeurs, hauteurTexte);
+      for (let n = 0; n < 5; n++) {
+        const haut = texte.firstElementChild.getBoundingClientRect().top;
+        const hauteur = texte.lastElementChild.getBoundingClientRect().bottom - haut;
+        const reduction = Math.min(1, place / (hauteur * somme));
+        images.forEach((i, k) => (i.style.width = proportions[k] * hauteur * reduction + "px"));
         intro.style.setProperty("--hauteur-images", hauteur + "px");
+        intro.style.setProperty("--decalage-images", haut - texte.getBoundingClientRect().top + "px");
       }
     };
     images.forEach((i) => i.addEventListener("load", ajuster));
