@@ -113,6 +113,7 @@ etapes:
       - image: photos/1.jpeg
       - image: photos/2-1.jpeg
       - image: photos/2-2.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101006-1.jpeg
   - titre: Halte à Pidmo et arrivée à Padum
     texte: >-
       L'après-midi, visites de monastères et de nonneries, rencontre avec les
