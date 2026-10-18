@@ -112,15 +112,12 @@ etapes:
       - image: photos/la-route-du-zanskar-10.jpg
   - titre: Halte à Pidmo et arrivée à Padum
     texte: >-
-      Après des heures de route et beaucoup de bonne humeur dans le minibus,
-      halte à Pidmo pour découvrir la famille de Stanzin. Un repas de midi nous
-      attendait chez son frère : un moment chaleureux, autour de la table basse
-      et des plats partagés.
+      L'après-midi, visites de monastères et de nonneries, rencontre avec les
+      nonnes qui nous offrent thé et biscuits.
 
+      De beaux échanges grâce aux traductions de Stanzin !
 
-      L'après-midi, visites de monastères et de nonneries, avant d'arriver à
-      Padum, la principale bourgade du Zanskar. C'est souvent dans ces moments
-      simples que commence vraiment le voyage.
+      Puis arrivée à Padum, la principale ville du Zanskar.
     photos:
       - image: photos/arrivee-a-padum-02.jpg
       - image: photos/img-20261017-wa0167.jpg
