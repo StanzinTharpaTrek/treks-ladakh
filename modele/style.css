@@ -54,13 +54,12 @@ img { display: block; max-width: 100%; }
 
 .intro { font-size: 1.22rem; margin-bottom: 4rem; }
 .intro p { max-width: 740px; }
-.intro--portrait { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 2.5rem; align-items: start; }
+.intro--portrait { display: grid; grid-template-columns: minmax(0, 740px) 140px; justify-content: start; gap: 2rem; align-items: start; }
 .intro__portrait { margin: .4rem 0 0; }
 .intro__portrait img { width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgb(60 35 20 / .18); }
 .intro__portrait figcaption { margin-top: .5rem; font-size: .92rem; text-align: center; opacity: .8; }
 @media (max-width: 760px) {
-  .intro--portrait { grid-template-columns: 1fr; gap: 1.5rem; }
-  .intro__portrait { max-width: 260px; margin: 0 auto; }
+  .intro--portrait { grid-template-columns: minmax(0, 1fr) 130px; gap: 1rem; }
 }
 .intro p:first-child::first-letter { font-family: var(--titres); font-size: 3.4em; float: left; line-height: .9; margin: .06em .12em 0 0; color: var(--bordeaux); }
 h2 { font-size: 2rem; margin: 0 auto 1.6rem; color: var(--ciel); display: flex; align-items: center; gap: .9rem; }
