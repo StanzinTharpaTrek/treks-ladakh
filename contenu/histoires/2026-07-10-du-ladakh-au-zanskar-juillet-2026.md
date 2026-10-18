@@ -343,4 +343,4 @@ etapes:
       - image: photos/monasteres-39.jpg
       - image: photos/monasteres-41.jpg
 ---
-Un grand voyage au cœur de l'Himalaya indien : les ruelles de Leh, la route spectaculaire du Zanskar, le baby trek de la vallée de Sham, le lac de Tso Moriri, les treks de Shang La et de Rumbak à Stok, et les plus beaux monastères de la région. Voici notre carnet de route, étape par étape.
+Un grand voyage au cœur de l'Himalaya indien : les ruelles de Leh, la route spectaculaire du Zanskar, le baby trek de la vallée de Sham, le lac Tso Moriri, les treks de Shang La et de Rumbak à Stok, et les plus beaux monastères de la région. Voici notre carnet de route, étape par étape.
