@@ -133,9 +133,14 @@ etapes:
       - image: photos/vallee-de-sham-03.jpg
       - image: photos/vallee-de-sham-04.jpg
   - titre: Des montagnes de toutes les couleurs
-    texte: "Très vite, le paysage change : les collines se parent d'ocre, de rouge,
-      de vert et de mauve, comme si un peintre avait renversé sa palette. Sur le
-      sentier, notre petit groupe semble minuscule."
+    texte: >-
+      Très vite, le paysage change : les collines se parent d'ocre, de rouge, de
+      vert et de mauve, comme si un peintre avait renversé sa palette. 
+
+      Lobsang, notre adorable guide anglophone nous devance sur des sentiers
+      rocailleux, tout en veillant à notre rythme de marche, proposant des
+      pauses lorsque le besoin s’en fait sentir. Sur le sentier, notre petit
+      groupe semble minuscule.
     photos:
       - image: photos/vallee-de-sham-15.jpg
       - image: photos/vallee-de-sham-13.jpg
