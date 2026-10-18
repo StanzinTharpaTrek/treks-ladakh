@@ -150,19 +150,31 @@ content:
     path: contenu/accueil/contact.txt
     format: raw
 
-  - name: portrait
-    label: Accueil (photo à côté de l'introduction)
+  - name: images-introduction
+    label: Accueil (images autour de l'introduction)
     type: file
-    path: contenu/accueil/portrait.yml
+    path: contenu/accueil/images-introduction.yml
     format: yaml
     fields:
-      - name: photo
-        label: Photo
+      - name: carte
+        label: Carte (tout à gauche)
         type: image
-        description: "Affichée à droite du texte d'introduction (en dessous sur téléphone). Laissez vide pour ne pas mettre de photo."
+        description: "Affichée tout à gauche du texte d'introduction (au-dessus sur téléphone). Laissez vide pour ne rien mettre."
+        options:
+          media: photos
+      - name: zoom
+        label: Carte zoomée (entre la carte et le texte)
+        type: image
+        description: "Affichée entre la carte et le texte d'introduction. Laissez vide pour ne rien mettre."
+        options:
+          media: photos
+      - name: photo
+        label: Photo (à droite)
+        type: image
+        description: "Affichée à droite du texte d'introduction. Laissez vide pour ne pas mettre de photo."
         options:
           media: photos
       - name: legende
-        label: Légende
+        label: Légende de la photo
         type: string
-        description: "Facultatif. Une courte phrase sous la photo."
+        description: "Facultatif. Une courte phrase sous la photo de droite."

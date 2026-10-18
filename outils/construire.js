@@ -401,20 +401,25 @@ async function construire() {
   if (imageEntete) await publierPhoto(path.join(dossierAccueil, imageEntete), path.join(SORTIE, enteteHtml), LARGEUR_ENTETE);
   const partageAccueil = imageEntete ? await imagePartage(path.join(SORTIE, enteteHtml), path.join(SORTIE, "partage.jpg")) : null;
 
-  // Photo à côté de l'introduction (contenu/accueil/portrait.yml, modifiable dans Pages CMS).
-  const fichierPortrait = path.join(dossierAccueil, "portrait.yml");
-  const portrait = fs.existsSync(fichierPortrait)
-    ? YAML.parse(fs.readFileSync(fichierPortrait, "utf8")) || {} : {};
-  let portraitHtml = null;
-  if (portrait.photo) {
-    const source = trouverPhotoCms(portrait.photo);
-    if (source) {
-      portraitHtml = "portrait" + path.extname(nomPublie(path.basename(source)));
-      await publierPhoto(source, path.join(SORTIE, portraitHtml), LARGEUR_SITE);
-    } else {
-      avertissements.push(`Accueil : photo introuvable « ${portrait.photo} ».`);
+  // Images autour de l'introduction : deux cartes à gauche, une photo à droite
+  // (contenu/accueil/images-introduction.yml, modifiable dans Pages CMS).
+  const fichierImagesIntro = path.join(dossierAccueil, "images-introduction.yml");
+  const imagesIntro = fs.existsSync(fichierImagesIntro)
+    ? YAML.parse(fs.readFileSync(fichierImagesIntro, "utf8")) || {} : {};
+  const publierImageIntro = async (champ, nom) => {
+    if (!imagesIntro[champ]) return null;
+    const source = trouverPhotoCms(imagesIntro[champ]);
+    if (!source) {
+      avertissements.push(`Accueil : photo introuvable « ${imagesIntro[champ]} ».`);
+      return null;
     }
-  }
+    const fichier = nom + path.extname(nomPublie(path.basename(source)));
+    await publierPhoto(source, path.join(SORTIE, fichier), LARGEUR_SITE);
+    return fichier;
+  };
+  const carteHtml = await publierImageIntro("carte", "carte");
+  const zoomHtml = await publierImageIntro("zoom", "carte-zoom");
+  const portraitHtml = await publierImageIntro("photo", "portrait");
 
   // Histoires
   const dossierHistoires = path.join(CONTENU, "histoires");
@@ -564,13 +569,17 @@ async function construire() {
 </header>
 <main class="contenu contenu--sur-bandeau">
   <div class="drapeaux" aria-hidden="true"></div>
-  <section class="intro${portraitHtml ? " intro--portrait" : ""}">
+  <section class="intro${carteHtml || zoomHtml ? " intro--cartes" : ""}${portraitHtml ? " intro--portrait" : ""}">
+    ${carteHtml || zoomHtml ? `<div class="intro__cartes">
+      ${[[carteHtml, "monde", "Localisation du Ladakh"], [zoomHtml, "zoom", "Carte de la région de Leh"]].filter(([f]) => f)
+        .map(([f, type, alt]) => `<a class="photo intro__carte--${type}" href="${f}" data-legende="${alt}"><img src="${f}" alt="${alt}"></a>`).join("\n      ")}
+    </div>` : ""}
     <div class="intro__texte">
     ${intro.paragraphes.map((p) => `<p>${enHtml(p)}</p>`).join("\n    ")}
     </div>
     ${portraitHtml ? `<figure class="intro__portrait">
-      <img src="${portraitHtml}" alt="${echapper(portrait.legende || "Stanzin")}">
-      ${portrait.legende ? `<figcaption>${echapper(portrait.legende)}</figcaption>` : ""}
+      <a class="photo" href="${portraitHtml}"${imagesIntro.legende ? ` data-legende="${echapper(imagesIntro.legende)}"` : ""}><img src="${portraitHtml}" alt="${echapper(imagesIntro.legende || "Stanzin")}"></a>
+      ${imagesIntro.legende ? `<figcaption>${echapper(imagesIntro.legende)}</figcaption>` : ""}
     </figure>` : ""}
   </section>
   <section>
