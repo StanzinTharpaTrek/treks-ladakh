@@ -72,15 +72,16 @@ etapes:
     titre: Premiers jours à Leh
     altitude: 3 500 m
     texte: >-
-      Avant de partir sur les sentiers, on prend le temps de s'acclimater à Leh,
-      à 3 500 mètres d'altitude. On marche lentement, on boit beaucoup de thé,
-      et on se laisse gagner par le rythme tranquille de la ville.
+      Avant de partir sur les sentiers, nous prenons le temps de nous acclimater
+      à Leh, à 3 500 mètres d'altitude, dans un « homestay » tout confort où
+      nous sommes reçus comme des amis dans une ambiance très familiale.
 
-
+      Le cuisinier nous concocte des plats indiens succulents au quotidien, que
+      du bonheur !
+       On marche lentement, on boit beaucoup de thé, et on se laisse gagner par le rythme tranquille de la ville.
       Du haut des ruelles de la vieille ville, la vue s'ouvre sur les toits
       plats, les drapeaux de prière et, au loin, les sommets enneigés du massif
       du Stok.
-
 
       Ces quelques jours sont aussi l'occasion de préparer le matériel, de
       retrouver l'équipe locale et de partager les derniers repas avant le
