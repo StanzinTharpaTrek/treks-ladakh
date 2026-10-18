@@ -217,6 +217,10 @@ etapes:
       - image: photos/tso-moriri-02.jpg
       - image: photos/tso-moriri-03.jpg
       - image: photos/tso-moriri-05.jpg
+      - image: photos/whatsapp-image-2026-10-18-at-102526-1.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102526-2.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102526-3.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102526.jpeg
   - titre: Le lac Tso Moriri
     texte: >-
       Puis le lac apparaît : une immense étendue bleue à plus de 4 500 mètres
