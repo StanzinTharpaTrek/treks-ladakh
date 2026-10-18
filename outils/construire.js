@@ -587,7 +587,7 @@ async function construire() {
     </figure>` : ""}
   </section>
   <section>
-    <h2 id="recits">Récits de trek</h2>
+    <h2 id="recits">Récits de treks</h2>
     <div class="cartes">${cartes || "<p>Aucune histoire pour le moment.</p>"}
     </div>
   </section>
