@@ -247,6 +247,9 @@ etapes:
       - image: photos/tso-moriri-10.jpg
       - image: photos/tso-moriri-15.jpg
       - image: photos/tso-moriri-11.jpg
+      - image: photos/whatsapp-image-2026-10-18-at-102748-1.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102748-2.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102748.jpeg
   - chapitre: Le trek de Shang La
     titre: Départ avec la caravane
     texte: "Les chevaux portent les bagages, l'équipe locale ouvre la marche : le
