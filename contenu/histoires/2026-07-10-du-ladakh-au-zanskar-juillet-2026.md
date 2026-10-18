@@ -311,8 +311,8 @@ etapes:
       - image: photos/whatsapp-image-2026-10-18-at-103054.jpeg
   - titre: Des crêtes de roche rouge
     texte: La descente longe des crêtes spectaculaires, découpées en lames et en
-      aiguilles de roche rouge et verte. Sur le sentier, un randonneur minuscule
-      donne l'échelle.
+      aiguilles de roche rouge et verte. Sur le sentier, Lopsang, notre guide
+      donne une idée de l'échelle.
     photos:
       - image: photos/rumbak-stok-02.jpg
       - image: photos/rumbak-stok-08.jpg
