@@ -129,10 +129,9 @@ etapes:
       - image: photos/arrivee-a-padum-couverture.jpg
       - image: photos/arrivee-a-padum-05.jpg
   - chapitre: Le baby trek de la vallée de Sham
-    titre: Le départ, à l'ombre des peupliers
-    texte: On marche à la fraîche, à l'ombre des peupliers, et on prend le temps
-      d'une pause thé au bord des murets de pierre. À la sortie du village, un
-      grand moulin à prières nous souhaite bonne route.
+    titre: A l'arrivée des deux jours, un repas nous attend
+    texte: Arrivée après 2 magnifiques journées de marche, le 4x4 avec les
+      cuisiniers et les repas nous attendent..
     photos:
       - image: photos/vallee-de-sham-03.jpg
       - image: photos/vallee-de-sham-04.jpg
