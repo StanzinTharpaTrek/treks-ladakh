@@ -91,6 +91,7 @@ etapes:
       - image: photos/premiers-jours-a-leh-02.jpg
       - image: photos/premiers-jours-a-leh-03.jpg
       - image: photos/premiers-jours-a-leh-04.jpg
+      - image: photos/img-20261017-wa0167-1.jpg
   - titre: La route du Zanskar
     altitude: 3 700 m
     texte: >-
@@ -106,10 +107,12 @@ etapes:
       venir.
     photos:
       - image: photos/la-route-du-zanskar-couverture.jpg
-      - image: photos/la-route-du-zanskar-05.jpg
       - image: photos/la-route-du-zanskar-06.jpg
       - image: photos/la-route-du-zanskar-07.jpg
       - image: photos/la-route-du-zanskar-10.jpg
+      - image: photos/1.jpeg
+      - image: photos/2-1.jpeg
+      - image: photos/2-2.jpeg
   - titre: Halte à Pidmo et arrivée à Padum
     texte: >-
       L'après-midi, visites de monastères et de nonneries, rencontre avec les
