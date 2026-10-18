@@ -50,6 +50,29 @@
     panneau.addEventListener("click", (e) => { if (e.target.closest("a")) basculer(false); });
   })();
 
+  // Accueil : les cartes empilées à gauche de l'introduction prennent la hauteur du texte.
+  (() => {
+    const cartes = document.querySelector(".intro__cartes");
+    const texte = document.querySelector(".intro__texte");
+    if (!cartes || !texte) return;
+    const images = [...cartes.querySelectorAll("img")];
+    const ajuster = () => {
+      if (getComputedStyle(cartes).flexDirection !== "column") return;
+      if (images.some((i) => !i.naturalWidth)) return;
+      const ecart = parseFloat(getComputedStyle(cartes).rowGap) || 0;
+      const proportion = images.reduce((s, i) => s + i.naturalHeight / i.naturalWidth, 0);
+      // La largeur change la hauteur du texte : quelques passes suffisent à se stabiliser.
+      for (let n = 0; n < 4; n++) {
+        const hauteur = texte.lastElementChild.getBoundingClientRect().bottom - cartes.getBoundingClientRect().top;
+        const largeur = (hauteur - ecart * (images.length - 1)) / proportion;
+        cartes.style.width = Math.max(100, Math.min(260, largeur)) + "px";
+      }
+    };
+    images.forEach((i) => i.addEventListener("load", ajuster));
+    addEventListener("resize", ajuster);
+    ajuster();
+  })();
+
   // Visionneuse : agrandit les photos (étapes et galerie) sans quitter la page.
   (() => {
     const liens = [...document.querySelectorAll("a.photo")];
