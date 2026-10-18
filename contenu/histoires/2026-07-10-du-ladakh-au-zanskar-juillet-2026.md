@@ -140,6 +140,16 @@ etapes:
     photos:
       - image: photos/vallee-de-sham-15.jpg
       - image: photos/vallee-de-sham-13.jpg
+      - image: photos/departrek.jpeg
+      - image: photos/depart2.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101901.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902-1.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902-2.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902-3.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902-4.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902-5.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101902.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-101903.jpeg
   - titre: De col en col
     altitude: 3 900 m
     texte: >-
