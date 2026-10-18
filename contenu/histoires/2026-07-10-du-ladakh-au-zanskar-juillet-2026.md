@@ -203,7 +203,7 @@ etapes:
     photos:
       - image: photos/vallee-de-sham-03.jpg
       - image: photos/vallee-de-sham-04.jpg
-  - chapitre: En route vers le lac de Tso Moriri
+  - chapitre: En route vers le lac Tso Moriri
     titre: Par-delà les cols
     texte: >-
       Cap vers l'est et le haut plateau du Changthang. La route remonte des
