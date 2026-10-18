@@ -58,6 +58,9 @@ img { display: block; max-width: 100%; }
 /* Une seule ligne : carte du monde | zoom | texte | photo. Les images ont toutes la même
    hauteur (--hauteur-images, calculée par le script de page.html), jamais plus que le texte. */
 .intro--cartes, .intro--portrait { display: grid; gap: 1.5rem; align-items: start; }
+/* La ligne de l'introduction déborde la largeur habituelle (1040px) pour laisser de la place au texte. */
+.contenu > .intro--cartes, .contenu > .intro--portrait { max-width: 1500px; }
+.intro--cartes .intro__texte p, .intro--portrait .intro__texte p { max-width: none; }
 .intro--cartes { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "cartes texte"; }
 .intro--portrait { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "texte portrait"; }
 .intro--cartes.intro--portrait { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "cartes texte portrait"; }
@@ -68,7 +71,7 @@ img { display: block; max-width: 100%; }
 .intro__cartes img, .intro__portrait img { display: block; height: var(--hauteur-images, 220px); width: auto; border-radius: 6px; box-shadow: 0 10px 26px rgb(60 35 20 / .18); }
 .intro__portrait figcaption { margin-top: .5rem; font-size: .92rem; text-align: center; opacity: .8; }
 /* Petit écran : cartes côte à côte au-dessus du texte, photo à droite du texte */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .intro--cartes, .intro--portrait, .intro__cartes { gap: 1rem; }
   .intro--cartes { grid-template-columns: minmax(0, 1fr); grid-template-areas: "cartes" "texte"; }
   .intro--portrait, .intro--cartes.intro--portrait { grid-template-columns: minmax(0, 1fr) 130px; }

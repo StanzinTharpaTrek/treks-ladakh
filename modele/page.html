@@ -51,20 +51,20 @@
   })();
 
   // Accueil : les images autour de l'introduction (cartes, photo) prennent une même hauteur,
-  // la plus grande possible en laissant au texte au moins 45 % de la ligne, sans dépasser le texte.
+  // la plus grande possible en laissant au texte au moins 60 % de la ligne, sans dépasser le texte.
   (() => {
     const intro = document.querySelector(".intro");
     const texte = document.querySelector(".intro__texte");
     const images = [...document.querySelectorAll(".intro__cartes img, .intro__portrait img")];
     if (!intro || !texte || !images.length) return;
-    const petitEcran = matchMedia("(max-width: 800px)");
+    const petitEcran = matchMedia("(max-width: 1000px)");
     const ajuster = () => {
       if (petitEcran.matches) return intro.style.removeProperty("--hauteur-images");
       if (images.some((i) => !i.naturalWidth)) return;
       const largeurs = images.reduce((s, i) => s + i.naturalWidth / i.naturalHeight, 0);
       const ecart = parseFloat(getComputedStyle(intro).columnGap) || 0;
       // Écarts entre les 4 blocs, plus la marge haute des images (alignées sur le haut du texte).
-      const place = intro.clientWidth * 0.55 - ecart * images.length;
+      const place = intro.clientWidth * 0.4 - ecart * images.length;
       let hauteur = place / largeurs;
       intro.style.setProperty("--hauteur-images", hauteur + "px");
       // La hauteur du texte dépend de sa largeur : quelques passes suffisent à se stabiliser.
