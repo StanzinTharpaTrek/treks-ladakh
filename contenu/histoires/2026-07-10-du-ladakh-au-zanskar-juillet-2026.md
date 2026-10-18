@@ -193,7 +193,9 @@ etapes:
     photos:
       - image: photos/vallee-de-sham-12.jpg
       - image: photos/vallee-de-sham-11.jpg
-      - image: photos/vallee-de-sham-14.jpg
+      - image: photos/whatsapp-image-2026-10-18-at-102248.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102248-1.jpeg
+      - image: photos/whatsapp-image-2026-10-18-at-102248-2.jpeg
   - chapitre: Le baby trek de la vallée de Sham
     titre: A l'arrivée des deux jours, un repas nous attend
     texte: Arrivée après 2 magnifiques journées de marche, le 4x4 avec les
