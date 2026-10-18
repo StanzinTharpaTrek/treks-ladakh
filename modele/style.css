@@ -55,24 +55,25 @@ img { display: block; max-width: 100%; }
 .intro { font-size: 1.22rem; margin-bottom: 4rem; }
 .intro p { max-width: 740px; }
 /* Images autour de l'introduction : cartes à gauche, photo à droite */
-.intro--cartes, .intro--portrait { display: grid; justify-content: start; gap: 2rem; align-items: start; }
-.intro--cartes { grid-template-columns: auto minmax(0, 740px); grid-template-areas: "cartes texte"; }
-.intro--portrait { grid-template-columns: minmax(0, 740px) 140px; grid-template-areas: "texte portrait"; }
-.intro--cartes.intro--portrait { grid-template-columns: auto minmax(0, 1fr) 140px; grid-template-areas: "cartes texte portrait"; }
+/* Une seule ligne : carte du monde | zoom | texte | photo. Les images ont toutes la même
+   hauteur (--hauteur-images, calculée par le script de page.html), jamais plus que le texte. */
+.intro--cartes, .intro--portrait { display: grid; gap: 1.5rem; align-items: start; }
+.intro--cartes { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "cartes texte"; }
+.intro--portrait { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "texte portrait"; }
+.intro--cartes.intro--portrait { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "cartes texte portrait"; }
 .intro__texte { grid-area: texte; }
-/* Les cartes sont empilées ; leur largeur est ajustée (script de page.html) pour que
-   la pile fasse la hauteur du texte. 165px est la valeur par défaut, sans script. */
-.intro__cartes { grid-area: cartes; display: flex; flex-direction: column; gap: 1rem; width: 165px; margin-top: .4rem; }
+.intro__cartes { grid-area: cartes; display: flex; gap: 1.5rem; align-items: start; margin-top: .4rem; }
 .intro__portrait { grid-area: portrait; margin: .4rem 0 0; }
-.intro__cartes img, .intro__portrait img { display: block; width: 100%; border-radius: 6px; box-shadow: 0 10px 26px rgb(60 35 20 / .18); }
+.intro__cartes a, .intro__portrait a { display: block; }
+.intro__cartes img, .intro__portrait img { display: block; height: var(--hauteur-images, 220px); width: auto; border-radius: 6px; box-shadow: 0 10px 26px rgb(60 35 20 / .18); }
 .intro__portrait figcaption { margin-top: .5rem; font-size: .92rem; text-align: center; opacity: .8; }
-/* Petit écran : cartes côte à côte au-dessus du texte */
+/* Petit écran : cartes côte à côte au-dessus du texte, photo à droite du texte */
 @media (max-width: 800px) {
-  .intro--cartes, .intro--portrait { gap: 1rem; }
+  .intro--cartes, .intro--portrait, .intro__cartes { gap: 1rem; }
   .intro--cartes { grid-template-columns: minmax(0, 1fr); grid-template-areas: "cartes" "texte"; }
   .intro--portrait, .intro--cartes.intro--portrait { grid-template-columns: minmax(0, 1fr) 130px; }
   .intro--cartes.intro--portrait { grid-template-areas: "cartes cartes" "texte portrait"; }
-  .intro__cartes { flex-direction: row; align-items: start; width: auto !important; }
+  .intro__cartes img, .intro__portrait img { height: auto; width: 100%; }
   .intro__carte--monde { width: 180px; }
   .intro__carte--zoom { width: 130px; }
 }

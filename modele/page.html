@@ -50,22 +50,29 @@
     panneau.addEventListener("click", (e) => { if (e.target.closest("a")) basculer(false); });
   })();
 
-  // Accueil : les cartes empilées à gauche de l'introduction prennent la hauteur du texte.
+  // Accueil : les images autour de l'introduction (cartes, photo) prennent une même hauteur,
+  // la plus grande possible en laissant au texte au moins 45 % de la ligne, sans dépasser le texte.
   (() => {
-    const cartes = document.querySelector(".intro__cartes");
+    const intro = document.querySelector(".intro");
     const texte = document.querySelector(".intro__texte");
-    if (!cartes || !texte) return;
-    const images = [...cartes.querySelectorAll("img")];
+    const images = [...document.querySelectorAll(".intro__cartes img, .intro__portrait img")];
+    if (!intro || !texte || !images.length) return;
+    const petitEcran = matchMedia("(max-width: 800px)");
     const ajuster = () => {
-      if (getComputedStyle(cartes).flexDirection !== "column") return;
+      if (petitEcran.matches) return intro.style.removeProperty("--hauteur-images");
       if (images.some((i) => !i.naturalWidth)) return;
-      const ecart = parseFloat(getComputedStyle(cartes).rowGap) || 0;
-      const proportion = images.reduce((s, i) => s + i.naturalHeight / i.naturalWidth, 0);
-      // La largeur change la hauteur du texte : quelques passes suffisent à se stabiliser.
+      const largeurs = images.reduce((s, i) => s + i.naturalWidth / i.naturalHeight, 0);
+      const ecart = parseFloat(getComputedStyle(intro).columnGap) || 0;
+      // Écarts entre les 4 blocs, plus la marge haute des images (alignées sur le haut du texte).
+      const place = intro.clientWidth * 0.55 - ecart * images.length;
+      let hauteur = place / largeurs;
+      intro.style.setProperty("--hauteur-images", hauteur + "px");
+      // La hauteur du texte dépend de sa largeur : quelques passes suffisent à se stabiliser.
       for (let n = 0; n < 4; n++) {
-        const hauteur = texte.lastElementChild.getBoundingClientRect().bottom - cartes.getBoundingClientRect().top;
-        const largeur = (hauteur - ecart * (images.length - 1)) / proportion;
-        cartes.style.width = Math.max(100, Math.min(260, largeur)) + "px";
+        const decalage = images[0].getBoundingClientRect().top - texte.getBoundingClientRect().top;
+        const hauteurTexte = texte.lastElementChild.getBoundingClientRect().bottom - texte.getBoundingClientRect().top - decalage;
+        hauteur = Math.min(place / largeurs, hauteurTexte);
+        intro.style.setProperty("--hauteur-images", hauteur + "px");
       }
     };
     images.forEach((i) => i.addEventListener("load", ajuster));
