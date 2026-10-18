@@ -306,7 +306,6 @@ etapes:
       - image: photos/rumbak-stok-05.jpg
       - image: photos/rumbak-stok-09.jpg
       - image: photos/rumbak-stok-12.jpg
-      - image: photos/rumbak-stok-07.jpg
   - titre: Des crêtes de roche rouge
     texte: La descente longe des crêtes spectaculaires, découpées en lames et en
       aiguilles de roche rouge et verte. Sur le sentier, un randonneur minuscule
