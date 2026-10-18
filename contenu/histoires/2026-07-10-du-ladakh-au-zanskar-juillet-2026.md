@@ -40,9 +40,9 @@ etapes:
 
 
       Entre les treks avec nuits chez l’habitant ou en autonomie totale avec
-      portage par mules et nuits sous tentes,  les balades en 4×4 à travers des
-      décors à couper le souffle, les visites de monastères authentiques et la
-      découverte de festivals hauts en couleur, chaque journée a été d’une
+      portage par chevaux et nuits sous tentes,  les balades en 4×4 à travers
+      des décors à couper le souffle, les visites de monastères authentiques et
+      la découverte de festivals hauts en couleur, chaque journée a été d’une
       richesse incroyable.
 
       La beauté sauvage de cette région, la richesse de sa culture et
