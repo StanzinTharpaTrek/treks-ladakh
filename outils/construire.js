@@ -15,6 +15,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const YAML = require("yaml");
+const crypto = require("crypto");
 
 const RACINE = path.resolve(__dirname, "..");
 const CONTENU = path.join(RACINE, "contenu");
@@ -27,6 +28,8 @@ const RACINE_PUBLIQUE = path.join(CONTENU, "racine"); // fichiers copiés tels q
 // Adresse publique du site (champ « homepage » de package.json), pour les liens complets.
 const ADRESSE_SITE = require("../package.json").homepage.replace(/\/?$/, "/");
 const pagesDuSite = [];
+// Empreinte de style.css, ajoutée à son adresse : un navigateur ne garde jamais une ancienne version.
+const VERSION_STYLE = crypto.createHash("md5").update(fs.readFileSync(path.join(MODELE, "style.css"))).digest("hex").slice(0, 8);
 
 const IMAGES = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".avif", ".tif", ".tiff"];
 const LARGEUR_SITE = 1600;      // largeur maximale des photos sur le site
@@ -271,6 +274,7 @@ function page({ titre, blog, racine, corps, chemin, description, partage, type =
     .replaceAll("{{url}}", url)
     .replaceAll("{{image}}", partage ? ADRESSE_SITE + partage : "")
     .replaceAll("{{type}}", type)
+    .replaceAll("{{version}}", VERSION_STYLE)
     .replaceAll("{{racine}}", racine)
     .replace("{{corps}}", () => corps);
 }
