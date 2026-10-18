@@ -91,7 +91,7 @@ etapes:
       - image: photos/premiers-jours-a-leh-02.jpg
       - image: photos/premiers-jours-a-leh-03.jpg
       - image: photos/premiers-jours-a-leh-04.jpg
-      - image: photos/img-20261017-wa0167-1.jpg
+      - image: photos/img-20261017-wa0167.jpg
   - titre: La route du Zanskar
     altitude: 3 700 m
     texte: >-
@@ -146,7 +146,7 @@ etapes:
       - image: photos/whatsapp-image-2026-10-18-at-101902-1.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-101902-2.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-101902-3.jpeg
-      - image: photos/whatsapp-image-2026-10-18-at-101902-4.jpeg
+      - image: photos/vallee-de-sham-15.jpg
       - image: photos/whatsapp-image-2026-10-18-at-101902-5.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-101902.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-101903.jpeg
@@ -308,7 +308,7 @@ etapes:
       - image: photos/rumbak-stok-12.jpg
       - image: photos/whatsapp-image-2026-10-18-at-103054-1.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-103054-2.jpeg
-      - image: photos/whatsapp-image-2026-10-18-at-103054.jpeg
+      - image: photos/rumbak-stok-13.jpg
   - titre: Des crêtes de roche rouge
     texte: La descente longe des crêtes spectaculaires, découpées en lames et en
       aiguilles de roche rouge et verte. Sur le sentier, Lopsang, notre guide
