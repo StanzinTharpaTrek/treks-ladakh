@@ -149,3 +149,20 @@ content:
     type: file
     path: contenu/accueil/contact.txt
     format: raw
+
+  - name: portrait
+    label: Accueil (photo à côté de l'introduction)
+    type: file
+    path: contenu/accueil/portrait.yml
+    format: yaml
+    fields:
+      - name: photo
+        label: Photo
+        type: image
+        description: "Affichée à droite du texte d'introduction (en dessous sur téléphone). Laissez vide pour ne pas mettre de photo."
+        options:
+          media: photos
+      - name: legende
+        label: Légende
+        type: string
+        description: "Facultatif. Une courte phrase sous la photo."

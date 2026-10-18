@@ -129,3 +129,5 @@ Depuis un téléphone Android ou n'importe quel navigateur (Pages CMS) :
    envoyez-vous d'abord les photos par WhatsApp : elles seront allégées.
    Les menus « Accueil (introduction) » et « Page Contact » permettent
    aussi de modifier ces textes.
+   Le menu « Accueil (photo à côté de l'introduction) » permet de
+   changer (ou retirer) la photo affichée à droite du texte d'accueil.

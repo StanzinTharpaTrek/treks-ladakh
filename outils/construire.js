@@ -401,6 +401,21 @@ async function construire() {
   if (imageEntete) await publierPhoto(path.join(dossierAccueil, imageEntete), path.join(SORTIE, enteteHtml), LARGEUR_ENTETE);
   const partageAccueil = imageEntete ? await imagePartage(path.join(SORTIE, enteteHtml), path.join(SORTIE, "partage.jpg")) : null;
 
+  // Photo à côté de l'introduction (contenu/accueil/portrait.yml, modifiable dans Pages CMS).
+  const fichierPortrait = path.join(dossierAccueil, "portrait.yml");
+  const portrait = fs.existsSync(fichierPortrait)
+    ? YAML.parse(fs.readFileSync(fichierPortrait, "utf8")) || {} : {};
+  let portraitHtml = null;
+  if (portrait.photo) {
+    const source = trouverPhotoCms(portrait.photo);
+    if (source) {
+      portraitHtml = "portrait" + path.extname(nomPublie(path.basename(source)));
+      await publierPhoto(source, path.join(SORTIE, portraitHtml), LARGEUR_SITE);
+    } else {
+      avertissements.push(`Accueil : photo introuvable « ${portrait.photo} ».`);
+    }
+  }
+
   // Histoires
   const dossierHistoires = path.join(CONTENU, "histoires");
   const histoires = [];
@@ -549,8 +564,14 @@ async function construire() {
 </header>
 <main class="contenu contenu--sur-bandeau">
   <div class="drapeaux" aria-hidden="true"></div>
-  <section class="intro">
+  <section class="intro${portraitHtml ? " intro--portrait" : ""}">
+    <div class="intro__texte">
     ${intro.paragraphes.map((p) => `<p>${enHtml(p)}</p>`).join("\n    ")}
+    </div>
+    ${portraitHtml ? `<figure class="intro__portrait">
+      <img src="${portraitHtml}" alt="${echapper(portrait.legende || "Stanzin")}">
+      ${portrait.legende ? `<figcaption>${echapper(portrait.legende)}</figcaption>` : ""}
+    </figure>` : ""}
   </section>
   <section>
     <h2 id="recits">Récits de trek</h2>
