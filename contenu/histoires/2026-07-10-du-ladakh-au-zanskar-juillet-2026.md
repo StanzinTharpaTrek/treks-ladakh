@@ -128,7 +128,8 @@ etapes:
       - image: photos/arrivee-a-padum-04.jpg
       - image: photos/arrivee-a-padum-couverture.jpg
       - image: photos/arrivee-a-padum-05.jpg
-  - titre: Des montagnes de toutes les couleurs
+  - chapitre: Le baby trek de la vallée de Sham
+    titre: Des montagnes de toutes les couleurs
     texte: >-
       Très vite, le paysage change : les collines se parent d'ocre, de rouge, de
       vert et de mauve, comme si un peintre avait renversé sa palette. 
@@ -196,8 +197,7 @@ etapes:
       - image: photos/whatsapp-image-2026-10-18-at-102248.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-102248-1.jpeg
       - image: photos/whatsapp-image-2026-10-18-at-102248-2.jpeg
-  - chapitre: Le baby trek de la vallée de Sham
-    titre: A l'arrivée des deux jours, un repas nous attend
+  - titre: A l'arrivée des deux jours, un repas nous attend
     texte: Arrivée après 2 magnifiques journées de marche, le 4x4 avec les
       cuisiniers et les repas nous attendent..
     photos:
