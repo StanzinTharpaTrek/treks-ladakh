@@ -124,7 +124,6 @@ etapes:
       Puis arrivée à Padum, la principale ville du Zanskar.
     photos:
       - image: photos/arrivee-a-padum-02.jpg
-      - image: photos/img-20261017-wa0167.jpg
       - image: photos/arrivee-a-padum-04.jpg
       - image: photos/arrivee-a-padum-couverture.jpg
       - image: photos/arrivee-a-padum-05.jpg
